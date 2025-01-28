@@ -1,5 +1,7 @@
-<h1>Welcome to SvelteKit!</h1>
-<p>
-  Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the
-  documentation
-</p>
+<svelte:head>
+  <meta property="og:title" content="The Trying Times" />
+  <meta
+    property="og:description"
+    content="Fight billionaires with news you can act on."
+  />
+</svelte:head>

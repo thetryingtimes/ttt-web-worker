@@ -1,2 +1,48 @@
 @import 'tailwindcss';
-``
+
+@theme {
+  --color-ttt: #0084ff;
+  --color-ttt-green: #009900;
+  --color-ttt-red: #e90004;
+}
+
+body {
+  font-family: 'Roboto', serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.font-serif {
+  font-family: 'Roboto Serif', serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    'wdth' 100,
+    'GRAD' 0;
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.font-cond {
+  font-family: 'Roboto Condensed', serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.text-sm .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1;
+}
