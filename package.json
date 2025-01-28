@@ -4,15 +4,25 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "watch": "npm-watch",
+    "wrangler-dev": "wrangler dev --live-reload",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
-    "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types && mv worker-configuration.d.ts src/"
+  },
+  "watch": {
+    "build": {
+      "extensions": "svelte,ts,html,css",
+      "patterns": [
+        "src"
+      ]
+    }
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250124.3",
@@ -20,22 +30,24 @@
     "@eslint/js": "^9.18.0",
     "@sveltejs/adapter-auto": "^4.0.0",
     "@sveltejs/adapter-cloudflare": "^5.0.1",
-    "@sveltejs/kit": "^2.0.0",
-    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@sveltejs/kit": "^2.16.1",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tailwindcss/vite": "^4.0.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-svelte": "^2.46.1",
     "globals": "^15.14.0",
+    "npm-watch": "^0.13.0",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.10",
-    "svelte": "^5.0.0",
-    "svelte-check": "^4.0.0",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.0.0",
+    "svelte": "^5.19.4",
+    "svelte-check": "^4.1.4",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0",
-    "vite": "^5.4.11",
+    "vite": "^6.0.11",
     "wrangler": "^3.106.0"
   }
 }
