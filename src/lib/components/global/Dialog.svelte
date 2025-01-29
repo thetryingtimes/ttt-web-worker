@@ -17,7 +17,7 @@
   class="absolute top-0 left-0 h-dvh max-h-screen w-screen max-w-screen overflow-hidden bg-transparent backdrop:bg-black/65"
 >
   <div
-    class="bg-ttt absolute bottom-0 left-0 w-full rounded-tl-4xl rounded-tr-4xl text-white"
+    class="bg-ttt fixed bottom-0 left-0 w-full rounded-tl-4xl rounded-tr-4xl text-white"
   >
     <article class="relative m-auto flex max-w-prose flex-col gap-8 py-8">
       <!-- svelte-ignore a11y_autofocus -->
