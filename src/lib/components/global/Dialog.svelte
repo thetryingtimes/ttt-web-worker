@@ -3,10 +3,12 @@
 
   let {
     dialog = $bindable(),
+    header,
     children,
     actions
   } = $props<{
     dialog: HTMLDialogElement;
+    header: string;
     children: Snippet;
     actions?: Snippet;
   }>();
@@ -32,10 +34,13 @@
         <span aria-hidden="true" class="material-symbols-outlined">cancel</span>
       </button>
       <div class="flex flex-col gap-6 px-6">
+        <h2 class="text-xl font-bold md:text-3xl">
+          {@html header}
+        </h2>
         {@render children()}
       </div>
       {#if actions}
-        <div class="flex gap-4 px-4">
+        <div class="flex flex-wrap gap-4 px-4">
           {@render actions()}
         </div>
       {/if}
@@ -46,12 +51,6 @@
 <style>
   dialog[open] > div {
     animation: fade-in 0.35s ease-out;
-  }
-
-  @starting-style {
-    dialog > div {
-      opacity: 0;
-    }
   }
 
   @keyframes fade-in {

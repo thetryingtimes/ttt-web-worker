@@ -1,18 +1,21 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
+  import { goto, invalidateAll } from '$app/navigation';
   import { slide } from 'svelte/transition';
   import RoundButton from './RoundButton.svelte';
   import Pill from './Pill.svelte';
-  import ActionButton from './ActionButton.svelte';
+  import IdentityDialog from '../account/IdentityDialog.svelte';
+  import { page } from '$app/state';
 
   let { admin = false } = $props<{ admin?: boolean }>();
-
   let currentMenu = $state<'main' | 'account' | ''>('');
 
   const date = new Date();
   const formattedDate = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'long'
   }).format(date);
+
+  // svelte-ignore non_reactive_update
+  let registerDialog: HTMLDialogElement;
 </script>
 
 <nav
@@ -107,14 +110,35 @@
       out:slide
     >
       <h2 class="text-xl font-bold">Account</h2>
-      <ActionButton
-        label="Get a free account"
-        icon="person"
-        onclick={() => {}}
-      />
+      {#if page.data.user_id}
+        Logout
+      {:else}
+        <a
+          href="#sign-in"
+          class="flex items-center gap-1 font-bold"
+          onclick={(e) => {
+            e.preventDefault();
+            registerDialog.showModal();
+          }}
+        >
+          <span class="material-symbols-outlined" aria-hidden="true"
+            >person</span
+          >
+          <span class="underline">Sign in or register</span>
+        </a>
+      {/if}
     </div>
   {/if}
 </nav>
+
+<IdentityDialog
+  bind:dialog={registerDialog}
+  mode="account"
+  oncomplete={async (success) => {
+    await invalidateAll();
+    registerDialog.close();
+  }}
+/>
 
 <style>
   div[id] a {

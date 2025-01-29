@@ -66,12 +66,11 @@
   />
 {/snippet}
 
-<Dialog bind:dialog {actions}>
-  <h2 class="text-xl md:text-3xl">
-    <strong>
-      Billionaires control our food, healthcare, media — and government.
-    </strong>
-  </h2>
+<Dialog
+  bind:dialog
+  {actions}
+  header="Billionaires control our food, healthcare, media — and government."
+>
   <p>
     <strong>
       It's a rigged game, but there's a loophole: public pressure.

@@ -7,7 +7,6 @@
   <title>Mission Statement | The Trying Times</title>
 </svelte:head>
 
-<Impact />
 <Article>
   <h1>Mission Statement</h1>
   <p>
