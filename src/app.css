@@ -1,9 +1,11 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @theme {
   --color-ttt: #0084ff;
   --color-ttt-green: #009900;
   --color-ttt-red: #e90004;
+  --font-serif: 'Roboto Serif', serif;
 }
 
 body {
@@ -45,4 +47,10 @@ body {
 
 .material-symbols-outlined.filled {
   font-variation-settings: 'FILL' 1;
+}
+
+.prose {
+  * {
+    text-wrap: pretty;
+  }
 }

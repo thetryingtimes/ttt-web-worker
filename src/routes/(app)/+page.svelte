@@ -5,6 +5,7 @@
 </script>
 
 <svelte:head>
+  <title>Home | The Trying Times</title>
   <meta property="og:title" content="The Trying Times" />
   <meta
     property="og:description"

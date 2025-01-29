@@ -1,5 +1,13 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+  import { slide } from 'svelte/transition';
   import RoundButton from './RoundButton.svelte';
+  import Pill from './Pill.svelte';
+  import ActionButton from './ActionButton.svelte';
+
+  let { admin = false } = $props<{ admin?: boolean }>();
+
+  let currentMenu = $state<'main' | 'account' | ''>('');
 
   const date = new Date();
   const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -7,10 +15,113 @@
   }).format(date);
 </script>
 
-<nav class="sticky top-0 border-b border-b-gray-400 bg-gray-100">
-  <div class="m-auto flex max-w-prose items-center justify-between p-4">
-    <span class="inline-block h-10 w-10"></span>
-    <p class="uppercase"><strong>{formattedDate}</strong></p>
-    <RoundButton icon="person" ariaLabel="Show account menu" />
+<nav
+  class="sticky top-0 flex flex-col gap-0 border-b border-b-gray-400 bg-gray-100"
+>
+  <div
+    class="m-auto flex w-full max-w-prose items-center justify-between px-4 py-2"
+  >
+    {#if admin}
+      <RoundButton
+        icon="home"
+        ariaLabel="Home"
+        onclick={() => goto('/admin')}
+      />
+      <a href="/">
+        <img src="/lockup.svg" alt="The Trying Times" class="h-10" />
+      </a>
+      <span class="inline-block h-10 w-10"></span>
+    {:else}
+      <!-- <span class="inline-block h-10 w-10"></span> -->
+      <RoundButton
+        icon="menu"
+        ariaExpanded={currentMenu === 'main'}
+        ariaControls="main-menu"
+        ariaLabel={currentMenu === 'main' ? 'Hide main menu' : 'Show main menu'}
+        filled={currentMenu === 'main'}
+        onclick={() =>
+          currentMenu === 'main' ? (currentMenu = '') : (currentMenu = 'main')}
+      />
+      <p class="uppercase"><strong>{formattedDate}</strong></p>
+      <RoundButton
+        icon="person"
+        ariaExpanded={currentMenu === 'account'}
+        ariaControls="account-menu"
+        ariaLabel={currentMenu === 'account'
+          ? 'Hide account menu'
+          : 'Show account menu'}
+        filled={currentMenu === 'account'}
+        onclick={() =>
+          currentMenu === 'account'
+            ? (currentMenu = '')
+            : (currentMenu = 'account')}
+      />
+    {/if}
   </div>
+  {#if currentMenu === 'main'}
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
+    <div
+      id="main-menu"
+      class="m-auto flex w-full max-w-prose flex-col gap-2 p-4"
+      onclick={() => {
+        currentMenu = '';
+      }}
+      in:slide
+      out:slide
+    >
+      <h2 class="text-xl font-bold">Main menu</h2>
+      <a href="/" class="flex items-center gap-1 font-bold">
+        <span class="material-symbols-outlined" aria-hidden="true">home</span>
+        <span class="underline">Home</span>
+      </a>
+      <p class="flex items-center gap-1 font-bold">
+        <span class="material-symbols-outlined" aria-hidden="true"
+          >query_stats</span
+        >
+        <span class="mr-1">Research</span>
+        <Pill text="Coming soon" />
+      </p>
+      <a href="/mission-statement" class="flex items-center gap-1 font-bold">
+        <span class="material-symbols-outlined" aria-hidden="true"
+          >receipt_long</span
+        >
+        <span class="underline">Mission</span>
+      </a>
+      <a
+        href="mailto:thetryingtimes@proton.me?subject=Letter+to+the+editor"
+        class="flex items-center gap-1 font-bold"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true"
+          >mail_lock</span
+        >
+        <span class="underline">Contact</span>
+      </a>
+    </div>
+  {/if}
+  {#if currentMenu === 'account'}
+    <div
+      id="account-menu"
+      class="m-auto flex w-full max-w-prose flex-col gap-2 p-4"
+      in:slide
+      out:slide
+    >
+      <h2 class="text-xl font-bold">Account</h2>
+      <ActionButton
+        label="Get a free account"
+        icon="person"
+        onclick={() => {}}
+      />
+    </div>
+  {/if}
 </nav>
+
+<style>
+  div[id] a {
+    max-width: max-content;
+  }
+
+  div[id] .material-symbols-outlined {
+    font-size: 18px;
+  }
+</style>

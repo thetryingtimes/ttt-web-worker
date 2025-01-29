@@ -39,7 +39,7 @@
         class="aspect-square grow-0"
       />
       <div class="flex grow flex-col items-center justify-center gap-2 text-sm">
-        <p class="text-center text-pretty md:px-8">
+        <p class="text-center text-balance md:px-8">
           “The only thing necessary for the triumph of evil is for good men to
           do nothing.”
         </p>
