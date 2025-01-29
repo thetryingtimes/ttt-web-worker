@@ -1,7 +1,19 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import ActionButton from './ActionButton.svelte';
   import Dialog from './Dialog.svelte';
   let dialog: HTMLDialogElement;
+
+  onMount(() => {
+    try {
+      const autoShown = localStorage.getItem('impactAutoShown');
+
+      if (autoShown !== 'yes') {
+        dialog.showModal();
+        localStorage.setItem('impactAutoShown', 'yes');
+      }
+    } catch (e) {}
+  });
 </script>
 
 <section aria-label="The Trying Times's Impact" class="bg-ttt">
@@ -25,14 +37,12 @@
     </p>
     <div class="flex gap-4">
       <p class="flex items-center gap-1">
-        <span class="material-symbols-outlined">moving</span><strong
-          >Total Votes:</strong
-        > 1M
+        <span aria-hidden="true" class="material-symbols-outlined">moving</span
+        ><strong>Total Votes:</strong> 1M
       </p>
       <p class="flex items-center gap-1">
-        <span class="material-symbols-outlined">person</span><strong
-          >Daily Readers:</strong
-        > 123K
+        <span aria-hidden="true" class="material-symbols-outlined">person</span
+        ><strong>Daily Readers:</strong> 123K
       </p>
     </div>
   </div>
@@ -65,7 +75,7 @@
   <p>
     <strong>
       It's a rigged game, but there's a loophole: public pressure.
-    </strong> Here's how you can help:
+    </strong> The Trying Times needs your help:
   </p>
   <ol class="flex flex-col gap-6">
     <li class="flex gap-2">
@@ -75,7 +85,7 @@
       >
       <p class="pt-0.5">
         <strong class="text-xl font-bold">Skip the rage-bait</strong><br />We
-        publish articles based on legislation, not tweets, informing you of the
+        publish news based on legislation, not tweets, informing you of the
         facts.
       </p>
     </li>
@@ -96,7 +106,7 @@
       >
       <p class="pt-0.5">
         <strong class="text-xl font-bold">Share to build IRL pressure</strong
-        ><br />When WE, THE PEOPLE speak up, we put pressure on the system and
+        ><br />When WE, THE PEOPLE speak up, we put pressure on billionaires and
         get change.
       </p>
     </li>

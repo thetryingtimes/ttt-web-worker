@@ -11,6 +11,6 @@
   <div class="m-auto flex max-w-prose items-center justify-between p-4">
     <span class="inline-block h-10 w-10"></span>
     <p class="uppercase"><strong>{formattedDate}</strong></p>
-    <RoundButton icon="person" />
+    <RoundButton icon="person" ariaLabel="Show account menu" />
   </div>
 </nav>

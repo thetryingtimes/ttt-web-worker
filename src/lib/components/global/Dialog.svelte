@@ -29,9 +29,9 @@
           dialog.close();
         }}
       >
-        <span class="material-symbols-outlined">cancel</span>
+        <span aria-hidden="true" class="material-symbols-outlined">cancel</span>
       </button>
-      <div class="flex flex-col gap-6 px-8">
+      <div class="flex flex-col gap-6 px-6">
         {@render children()}
       </div>
       {#if actions}

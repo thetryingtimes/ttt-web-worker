@@ -10,6 +10,8 @@
   {onclick}
   class="bg-ttt flex grow items-center justify-center gap-1 border-[5px] border-white px-4 py-4 text-xl font-bold text-white"
 >
-  {#if icon}<span class="material-symbols-outlined text-lg">{icon}</span>{/if}
+  {#if icon}<span aria-hidden="true" class="material-symbols-outlined text-lg"
+      >{icon}</span
+    >{/if}
   {label}
 </button>
