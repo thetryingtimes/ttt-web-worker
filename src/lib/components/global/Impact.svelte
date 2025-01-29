@@ -49,7 +49,7 @@
     }}
   />
   <ActionButton
-    label="Let's go!"
+    label="I'm in!"
     onclick={() => {
       dialog.close();
     }}
@@ -63,8 +63,9 @@
     </strong>
   </h2>
   <p>
-    <strong>The game is rigged, but we found a loophole:</strong>
-    create public pressure using our vote.
+    <strong>
+      It's a rigged game, but there's a loophole: public pressure.
+    </strong> Here's how you can help:
   </p>
   <ol class="flex flex-col gap-6">
     <li class="flex gap-2">
@@ -95,7 +96,7 @@
       >
       <p class="pt-0.5">
         <strong class="text-xl font-bold">Share to build IRL pressure</strong
-        ><br />When WE, THE PEOPLE speak up, we put pressure on the system to
+        ><br />When WE, THE PEOPLE speak up, we put pressure on the system and
         get change.
       </p>
     </li>
