@@ -6,7 +6,7 @@
       icon: 'mail_lock'
     },
     {
-      href: '#',
+      href: 'https://www.buymeacoffee.com/the.trying.times',
       label: 'Buy me a Coffee',
       icon: 'coffee'
     },

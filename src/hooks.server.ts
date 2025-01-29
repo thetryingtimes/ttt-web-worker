@@ -18,7 +18,11 @@ export const handle: Handle = async ({ event, resolve }) => {
       });
 
       if (res.session_token) {
-        event.cookies.set('session', res.session_token, getCookieOptions());
+        event.cookies.set(
+          'session',
+          res.session_token,
+          getCookieOptions(event.request.url)
+        );
         event.locals.user_id = res.user.user_id;
       }
     } catch (e) {

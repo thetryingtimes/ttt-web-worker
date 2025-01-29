@@ -5,6 +5,7 @@
   import Pill from './Pill.svelte';
   import IdentityDialog from '../account/IdentityDialog.svelte';
   import { page } from '$app/state';
+  import { LogoutRequestEndpoint } from '$lib/api/account/auth/logout';
 
   let { admin = false } = $props<{ admin?: boolean }>();
   let currentMenu = $state<'main' | 'account' | ''>('');
@@ -111,7 +112,26 @@
     >
       <h2 class="text-xl font-bold">Account</h2>
       {#if page.data.user_id}
-        Logout
+        <a
+          href="#logout"
+          class="flex items-center gap-1 font-bold"
+          onclick={async (e) => {
+            e.preventDefault();
+
+            try {
+              const req = await fetch(LogoutRequestEndpoint, {
+                method: 'POST'
+              });
+            } catch (e) {}
+
+            await invalidateAll();
+          }}
+        >
+          <span class="material-symbols-outlined" aria-hidden="true"
+            >logout</span
+          >
+          <span class="underline">Sign out</span>
+        </a>
       {:else}
         <a
           href="#sign-in"

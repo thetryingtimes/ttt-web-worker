@@ -26,7 +26,7 @@ export const POST: RequestHandler = async ({ request, platform, cookies }) => {
       session_duration_minutes: 60 * 24 * 30
     });
 
-    cookies.set('session', res.session_token, getCookieOptions());
+    cookies.set('session', res.session_token, getCookieOptions(request.url));
 
     const success: VerifyResponseType = { success: true };
     return json(success);

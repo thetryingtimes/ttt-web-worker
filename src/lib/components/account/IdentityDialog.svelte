@@ -118,6 +118,7 @@
         completeAndReset(true);
       } else {
         codeError = true;
+        codeLoading = false;
       }
     }}
   />
