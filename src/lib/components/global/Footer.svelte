@@ -28,7 +28,9 @@
   ];
 </script>
 
-<footer class="border-t-ttt border-b-ttt border-t-8 border-b-8 py-2">
+<footer
+  class="border-t-ttt border-b-ttt border-t-8 border-b-8 bg-gray-100 py-2"
+>
   <div class="m-auto flex max-w-prose flex-col gap-4">
     <div class="flex gap-2 px-2">
       <img

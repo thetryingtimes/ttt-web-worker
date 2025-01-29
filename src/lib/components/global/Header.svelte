@@ -11,7 +11,9 @@
 
 <header>
   <div class="m-auto flex max-w-prose flex-col items-center p-4 py-8">
-    <img src="/lockup.svg" alt="The Trying Times" class="w-full md:w-3/4" />
+    <a href="/" class="w-full md:w-3/4">
+      <img src="/lockup.svg" alt="The Trying Times" class="w-full" />
+    </a>
     <!-- <p class="font-serif"><em>{sayings[rand] || sayings[0]}</em></p> -->
     <p class="font-serif"><em>News you can act on</em></p>
   </div>

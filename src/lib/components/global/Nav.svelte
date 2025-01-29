@@ -7,7 +7,7 @@
   }).format(date);
 </script>
 
-<nav class="sticky border-b border-b-gray-400 bg-gray-100">
+<nav class="sticky top-0 border-b border-b-gray-400 bg-gray-100">
   <div class="m-auto flex max-w-prose items-center justify-between p-4">
     <span class="inline-block h-10 w-10"></span>
     <p class="uppercase"><strong>{formattedDate}</strong></p>

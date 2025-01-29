@@ -1,7 +1,6 @@
 <script lang="ts">
   import Footer from '$lib/components/global/Footer.svelte';
   import Header from '$lib/components/global/Header.svelte';
-  import Impact from '$lib/components/global/Impact.svelte';
   import Nav from '$lib/components/global/Nav.svelte';
 
   import '../app.css';
@@ -15,6 +14,7 @@
 
 <Nav />
 <Header />
-<Impact />
-{@render children()}
+<main>
+  {@render children()}
+</main>
 <Footer />
