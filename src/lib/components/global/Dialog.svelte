@@ -14,7 +14,7 @@
 
 <dialog
   bind:this={dialog}
-  class="absolute top-0 left-0 h-screen max-h-screen w-screen max-w-screen overflow-hidden bg-transparent backdrop:bg-black/65"
+  class="absolute top-0 left-0 h-dvh max-h-screen w-screen max-w-screen overflow-hidden bg-transparent backdrop:bg-black/65"
 >
   <div
     class="bg-ttt absolute bottom-0 left-0 w-full rounded-tl-4xl rounded-tr-4xl text-white"

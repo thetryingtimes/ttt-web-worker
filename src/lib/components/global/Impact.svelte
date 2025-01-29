@@ -4,13 +4,13 @@
   let dialog: HTMLDialogElement;
 </script>
 
-<section aria-label="The Trying Times' Impact" class="bg-ttt">
+<section aria-label="The Trying Times's Impact" class="bg-ttt">
   <div
     class="m-auto flex flex-col items-center gap-4 p-4 text-center text-sm text-white"
   >
     <p>
-      <strong>Your vote is your voice.</strong> TTT is building a news platform
-      to fight billionaires,
+      <strong>Your vote is your voice.</strong> TTT is a news platform to fight
+      billionaires,
       <a
         href="#impact"
         aria-label="Click to read about The Trying Times"
@@ -57,14 +57,14 @@
 {/snippet}
 
 <Dialog bind:dialog {actions}>
-  <h2 class="text-xl md:text-2xl">
+  <h2 class="text-xl md:text-3xl">
     <strong>
       Billionaires control our food, healthcare, media — and government.
     </strong>
   </h2>
   <p>
-    <strong>The game is rigged, but we found a loophole.</strong>
-    Here’s how to help:
+    <strong>The game is rigged, but we found a loophole:</strong>
+    create public pressure using our vote.
   </p>
   <ol class="flex flex-col gap-6">
     <li class="flex gap-2">
@@ -84,9 +84,8 @@
         >2</span
       >
       <p class="pt-0.5">
-        <strong class="text-xl font-bold">Vote like Congress</strong><br />Your
-        vote is your voice — use it to support or oppose legislation, one vote
-        per article.
+        <strong class="text-xl font-bold">Vote on every article</strong><br
+        />Make your voice heard by voting SUPPORT or OPPOSE on each article.
       </p>
     </li>
     <li class="flex gap-2">
@@ -96,8 +95,8 @@
       >
       <p class="pt-0.5">
         <strong class="text-xl font-bold">Share to build IRL pressure</strong
-        ><br />It will take all of us to hold Congress accountable in their next
-        election.
+        ><br />When WE, THE PEOPLE speak up, we put pressure on the system to
+        get change.
       </p>
     </li>
   </ol>
