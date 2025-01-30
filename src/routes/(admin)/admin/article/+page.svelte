@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import {
     KnowledgeRequestEndpoint,
     type KnowledgeRequestProps,
@@ -6,28 +7,45 @@
     type KnowledgeResponseType
   } from '$lib/api/admin/knowledge';
   import { ApiClient } from '$lib/api/ApiClient';
+  import {
+    ArticleSaveEndpoint,
+    type ArticleSaveRequestProps,
+    ArticleSaveResponseParser,
+    type ArticleDraft,
+    type ArticleSaveResponse
+  } from '$lib/api/articles/article';
+  import AdminAddSectionSelect from '$lib/components/admin/AdminAddSectionSelect.svelte';
   import AdminButton from '$lib/components/admin/AdminButton.svelte';
+  import AdminCategorySelect from '$lib/components/admin/AdminCategorySelect.svelte';
   import AdminCheckbox from '$lib/components/admin/AdminCheckbox.svelte';
   import AdminDatetime from '$lib/components/admin/AdminDate.svelte';
   import AdminFileAttachment from '$lib/components/admin/AdminFileAttachment.svelte';
   import AdminReadonly from '$lib/components/admin/AdminReadonly.svelte';
   import AdminTextarea from '$lib/components/admin/AdminTextarea.svelte';
-  import Article from '$lib/components/articles/Article.svelte';
   import { getTodaysDate } from '$lib/utils/date';
   import { filesToBase64 } from '$lib/utils/file';
   import { nanoid } from 'nanoid';
+  import type { PageData } from './$types';
 
-  let article = $state({
-    title: '',
-    blurb: '',
-    summary: '',
-    impact: '',
-    knowledge: '',
+  let { data }: { data: PageData } = $props();
 
-    external_id: nanoid(12),
-    published: false,
-    published_at: getTodaysDate()
-  });
+  let draft = $state<ArticleDraft>(
+    data.article || {
+      external_id: nanoid(12),
+      published_at: getTodaysDate(),
+      published: false,
+      category_id: null,
+      voting_enabled: false,
+
+      knowledge: '',
+
+      content: {
+        title: '',
+        blurb: '',
+        sections: [{ type: 'section', content: '' }]
+      }
+    }
+  );
 
   let knowledgeLoading = $state(false);
   let dragging = $state(false);
@@ -57,13 +75,25 @@
 </script>
 
 <svelte:head>
-  <title>New Article | The Trying Times</title>
+  <title>{draft.content.title || 'New Article'} | The Trying Times</title>
 </svelte:head>
 
-<div class="flex flex-wrap justify-center gap-8">
+<div class="flex flex-wrap justify-center gap-8 py-8">
   <header class="m-auto flex w-full max-w-prose items-center xl:max-w-[1200px]">
-    <h1 class="grow font-serif text-3xl">{article.title || 'Article'}</h1>
-    <AdminButton label="Save" onclick={() => {}} />
+    <h1 class="grow font-serif text-3xl">
+      {draft.content.title || 'New Article'}
+    </h1>
+    <AdminButton
+      label="Save"
+      onclick={async () => {
+        const res = await ApiClient.post<
+          ArticleSaveRequestProps,
+          ArticleSaveResponse
+        >(ArticleSaveEndpoint, draft, ArticleSaveResponseParser);
+
+        if (res && res.success) await goto('/admin');
+      }}
+    />
   </header>
 
   <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -88,8 +118,8 @@
         />
       {/each}
     </div>
-    {#if article.knowledge}
-      <div class="prose"><pre>{article.knowledge}</pre></div>
+    {#if draft.knowledge}
+      <div class="prose"><pre>{draft.knowledge}</pre></div>
     {/if}
     <div>
       <AdminButton
@@ -109,7 +139,7 @@
           knowledgeLoading = false;
 
           if (res && res.success) {
-            article.knowledge = res.markdown;
+            draft.knowledge = res.markdown;
           }
         }}
       />
@@ -120,14 +150,26 @@
     class="flex w-full max-w-prose grow flex-col gap-4 rounded-lg border-2 border-gray-400 p-4"
   >
     <h2 class="font-serif text-xl">Article</h2>
-    <AdminTextarea label="Title" serif bind:value={article.title} />
-    <AdminCheckbox label="Published" bind:checked={article.published} />
+    <AdminTextarea label="Title" serif bind:value={draft.content.title} />
     <div class="flex gap-4">
-      <AdminDatetime label="Pulbished at" bind:value={article.published_at} />
-      <AdminReadonly label="External ID" bind:value={article.external_id} />
+      <AdminCheckbox label="Published" bind:checked={draft.published} />
+      <AdminCheckbox
+        label="Voting Enabled"
+        bind:checked={draft.voting_enabled}
+      />
     </div>
-    <AdminTextarea label="Blurb" bind:value={article.blurb} />
-    <AdminTextarea label="Summary" bind:value={article.summary} />
-    <AdminTextarea label="Impact" bind:value={article.impact} />
+    <div class="flex gap-4">
+      <AdminCategorySelect bind:value={draft.category_id} />
+      <AdminDatetime label="Pulbished at" bind:value={draft.published_at} />
+      <AdminReadonly label="External ID" bind:value={draft.external_id} />
+    </div>
+    {#each draft.content.sections as section, index}
+      <AdminTextarea
+        lg
+        label="Section {index + 1}"
+        bind:value={section.content}
+      />
+    {/each}
+    <AdminAddSectionSelect bind:sections={draft.content.sections} />
   </section>
 </div>

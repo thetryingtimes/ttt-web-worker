@@ -1,4 +1,3 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { z } from 'zod';
 
 export const KnowledgeRequestEndpoint = `/admin/article/knowledge`;

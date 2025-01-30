@@ -13,6 +13,6 @@
       {#if !checked}check_box_outline_blank{/if}
     </span>
     <input type="checkbox" bind:checked class="absolute opacity-0" {id} />
-    {label}
+    <span class:text-gray-400={!checked}>{label}</span>
   </label>
 </div>

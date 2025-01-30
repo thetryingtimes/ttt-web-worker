@@ -37,9 +37,9 @@
       />
       {#if admin}
         <RoundButton
-          icon="post_add"
+          icon="home"
           ariaLabel="Admin home"
-          onclick={() => goto('/admin')}
+          onclick={async () => await goto('/admin')}
         />
       {/if}
     </div>

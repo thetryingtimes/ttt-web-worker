@@ -16,6 +16,8 @@ declare global {
         ANTHROPIC_API_KEY: string;
         STYTCH_PROJECT_ID: string;
         STYTCH_SECRET: string;
+        SUPABASE_PROJECT_URL: string;
+        SUPABASE_PUBLIC_ANON_KEY: string;
       };
       cf: CfProperties;
       ctx: ExecutionContext;
