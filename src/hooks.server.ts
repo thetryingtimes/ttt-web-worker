@@ -1,5 +1,5 @@
 import { getCookieOptions } from '$lib/server/utils/cookies';
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
 import * as stytch from 'stytch';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -29,6 +29,19 @@ export const handle: Handle = async ({ event, resolve }) => {
       event.cookies.delete('session', { path: '/' });
       event.locals.user_id = undefined;
     }
+  }
+
+  if (event.route?.id?.startsWith('/(admin)')) {
+    let allowed = false;
+
+    if (
+      typeof event.locals.user_id === 'string' &&
+      event.platform?.env?.ADMIN_USER_ID === event.locals.user_id
+    ) {
+      allowed = true;
+    }
+
+    if (!allowed) throw redirect(301, '/');
   }
 
   return await resolve(event);

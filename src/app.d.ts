@@ -12,6 +12,8 @@ declare global {
 
     interface Platform {
       env: {
+        ADMIN_USER_ID: string;
+        ANTHROPIC_API_KEY: string;
         STYTCH_PROJECT_ID: string;
         STYTCH_SECRET: string;
       };

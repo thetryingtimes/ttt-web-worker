@@ -25,18 +25,7 @@
   <div
     class="m-auto flex w-full max-w-prose items-center justify-between px-4 py-2"
   >
-    {#if admin}
-      <RoundButton
-        icon="home"
-        ariaLabel="Home"
-        onclick={() => goto('/admin')}
-      />
-      <a href="/">
-        <img src="/lockup.svg" alt="The Trying Times" class="h-10" />
-      </a>
-      <span class="inline-block h-10 w-10"></span>
-    {:else}
-      <!-- <span class="inline-block h-10 w-10"></span> -->
+    <div class="flex gap-2">
       <RoundButton
         icon="menu"
         ariaExpanded={currentMenu === 'main'}
@@ -46,21 +35,28 @@
         onclick={() =>
           currentMenu === 'main' ? (currentMenu = '') : (currentMenu = 'main')}
       />
-      <p class="uppercase"><strong>{formattedDate}</strong></p>
-      <RoundButton
-        icon="person"
-        ariaExpanded={currentMenu === 'account'}
-        ariaControls="account-menu"
-        ariaLabel={currentMenu === 'account'
-          ? 'Hide account menu'
-          : 'Show account menu'}
-        filled={currentMenu === 'account'}
-        onclick={() =>
-          currentMenu === 'account'
-            ? (currentMenu = '')
-            : (currentMenu = 'account')}
-      />
-    {/if}
+      {#if admin}
+        <RoundButton
+          icon="post_add"
+          ariaLabel="Admin home"
+          onclick={() => goto('/admin')}
+        />
+      {/if}
+    </div>
+    <p class="uppercase"><strong>{formattedDate}</strong></p>
+    <RoundButton
+      icon="person"
+      ariaExpanded={currentMenu === 'account'}
+      ariaControls="account-menu"
+      ariaLabel={currentMenu === 'account'
+        ? 'Hide account menu'
+        : 'Show account menu'}
+      filled={currentMenu === 'account'}
+      onclick={() =>
+        currentMenu === 'account'
+          ? (currentMenu = '')
+          : (currentMenu = 'account')}
+    />
   </div>
   {#if currentMenu === 'main'}
     <!-- svelte-ignore a11y_click_events_have_key_events -->

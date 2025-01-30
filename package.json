@@ -38,6 +38,7 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-svelte": "^2.46.1",
     "globals": "^15.14.0",
+    "nanoid": "^5.0.9",
     "npm-watch": "^0.13.0",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
@@ -52,6 +53,7 @@
     "zod": "^3.24.1"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.3",
     "stytch": "^12.3.1"
   }
 }
