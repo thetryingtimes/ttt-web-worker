@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ platform }) => {
   const { data, error } = await supa.publicGetHomepageExternalIds();
 
   if (data) {
-    return { success: true, external_ids: data };
+    return { success: true, list: data };
   }
 
   return { success: false };

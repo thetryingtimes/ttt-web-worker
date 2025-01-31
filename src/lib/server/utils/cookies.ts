@@ -5,7 +5,7 @@ export const getCookieOptions = (
   expires.setDate(expires.getDate() + 30);
 
   // localhost…
-  const is_insecure = url.startsWith('http://');
+  const is_insecure = url.startsWith('http://localhost');
 
   return {
     path: '/',

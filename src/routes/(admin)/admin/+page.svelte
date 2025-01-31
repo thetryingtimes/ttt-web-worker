@@ -13,7 +13,7 @@
 
 <Header />
 
-<section class="m-auto flex max-w-prose flex-col gap-8">
+<section class="m-auto flex max-w-prose flex-col gap-8 p-4">
   <header class="flex items-center">
     <h1 class="grow font-serif text-3xl">Articles</h1>
     <AdminButton

@@ -27,4 +27,28 @@ export class ApiClient {
       return undefined;
     }
   }
+
+  static async get<ReturnType>(
+    endpoint: string,
+    parser: ZodSchema
+  ): Promise<ReturnType | undefined> {
+    try {
+      const req = await fetch(endpoint, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const res = await req.json();
+      const parsed = parser.safeParse(res);
+
+      if (parsed.success) {
+        return parsed.data;
+      }
+
+      return undefined;
+    } catch (e) {
+      return undefined;
+    }
+  }
 }

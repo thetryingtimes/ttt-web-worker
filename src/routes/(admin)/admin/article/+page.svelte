@@ -79,7 +79,9 @@
 </svelte:head>
 
 <div class="flex flex-wrap justify-center gap-8 py-8">
-  <header class="m-auto flex w-full max-w-prose items-center xl:max-w-[1200px]">
+  <header
+    class="m-auto flex w-full max-w-prose items-center px-4 xl:max-w-[1200px]"
+  >
     <h1 class="grow font-serif text-3xl">
       {draft.content.title || 'New Article'}
     </h1>
@@ -152,14 +154,14 @@
     <h2 class="font-serif text-xl">Article</h2>
     <AdminTextarea label="Title" serif bind:value={draft.content.title} />
     <AdminTextarea label="Blurb" bind:value={draft.content.blurb} />
-    <div class="flex gap-4">
+    <div class="flex flex-wrap gap-4">
       <AdminCheckbox label="Published" bind:checked={draft.published} />
       <AdminCheckbox
         label="Voting Enabled"
         bind:checked={draft.voting_enabled}
       />
     </div>
-    <div class="flex gap-4">
+    <div class="flex flex-wrap gap-4">
       <AdminCategorySelect bind:value={draft.category_id} />
       <AdminDatetime label="Pulbished at" bind:value={draft.published_at} />
       <AdminReadonly label="External ID" bind:value={draft.external_id} />

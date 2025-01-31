@@ -16,5 +16,20 @@
       "custom_domain": true
     }
   ],
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [
+    {
+      "binding": "ARTICLES",
+      "id": "f0bcbaf24faf42138ab1a53597307946",
+      "preview_id": "f0bcbaf24faf42138ab1a53597307946"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "queue": "tabulator",
+        "binding": "TABULATOR"
+      }
+    ]
+  }
 }

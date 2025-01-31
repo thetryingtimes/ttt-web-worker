@@ -1,5 +1,5 @@
-// See https://svelte.dev/docs/kit/types#app.d.ts
-// for information about these interfaces
+import type { VoteMessage } from '$lib/api/ballots/ballot';
+
 declare global {
   namespace App {
     interface Locals {
@@ -18,6 +18,9 @@ declare global {
         STYTCH_SECRET: string;
         SUPABASE_PROJECT_URL: string;
         SUPABASE_PUBLIC_ANON_KEY: string;
+
+        ARTICLES: KVNamespace;
+        TABULATOR: Queue<VoteMessage>;
       };
       cf: CfProperties;
       ctx: ExecutionContext;

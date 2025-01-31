@@ -45,6 +45,42 @@ export type Database = {
         }
         Relationships: []
       }
+      ballots: {
+        Row: {
+          article_external_id: string
+          ballot_id: string
+          county: string
+          created_at: string
+          id: number
+          oppose: boolean | null
+          state: string
+          stytch_user_id: string
+          support: boolean | null
+        }
+        Insert: {
+          article_external_id: string
+          ballot_id: string
+          county: string
+          created_at?: string
+          id?: number
+          oppose?: boolean | null
+          state: string
+          stytch_user_id: string
+          support?: boolean | null
+        }
+        Update: {
+          article_external_id?: string
+          ballot_id?: string
+          county?: string
+          created_at?: string
+          id?: number
+          oppose?: boolean | null
+          state?: string
+          stytch_user_id?: string
+          support?: boolean | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
