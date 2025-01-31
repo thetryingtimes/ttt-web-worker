@@ -38,7 +38,7 @@ export class SupabaseClient {
       .select()
       .eq('article_external_id', article_external_id);
 
-    return data?.length === 1;
+    return data?.length === 1 && data[0].voting_enabled === true;
   }
 
   async userCanVote(article_external_id: string, stytch_user_id: string) {
