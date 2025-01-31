@@ -2,7 +2,31 @@
   import { onMount } from 'svelte';
   import ActionButton from './ActionButton.svelte';
   import Dialog from './Dialog.svelte';
+  import { ApiClient } from '$lib/api/ApiClient';
+  import {
+    type SiteStats,
+    SiteStatsEndpoint,
+    type SiteStatsResponse,
+    SiteStatsResponseParser
+  } from '$lib/api/kv/stats';
+  import { millify } from 'millify';
+  import { page } from '$app/state';
+
+  // svelte-ignore non_reactive_update
   let dialog: HTMLDialogElement;
+  let stats: SiteStats | undefined = $state(page.data.stats);
+  let interval_id: any;
+
+  const loadStats = async () => {
+    const res = await ApiClient.get<SiteStatsResponse>(
+      SiteStatsEndpoint,
+      SiteStatsResponseParser
+    );
+
+    if (res && res.success) {
+      stats = res.stats;
+    }
+  };
 
   onMount(() => {
     try {
@@ -13,6 +37,14 @@
         localStorage.setItem('impactAutoShown', 'yes');
       }
     } catch (e) {}
+
+    interval_id = setInterval(async () => {
+      await loadStats();
+    }, 1000 * 60);
+
+    return () => {
+      clearInterval(interval_id);
+    };
   });
 </script>
 
@@ -35,16 +67,22 @@
         <strong>and we need your help!</strong>
       </a>
     </p>
-    <div class="flex gap-4">
-      <p class="flex items-center gap-1">
-        <span aria-hidden="true" class="material-symbols-outlined">moving</span
-        ><strong>Total Votes:</strong> 1M
-      </p>
-      <p class="flex items-center gap-1">
-        <span aria-hidden="true" class="material-symbols-outlined">person</span
-        ><strong>Daily Readers:</strong> 123K
-      </p>
-    </div>
+    {#if stats}
+      <div class="flex gap-4">
+        <p class="flex items-center gap-1">
+          <span aria-hidden="true" class="material-symbols-outlined"
+            >moving</span
+          ><strong>Total Votes:</strong>
+          {millify(stats.total_votes)}
+        </p>
+        <p class="flex items-center gap-1">
+          <span aria-hidden="true" class="material-symbols-outlined"
+            >person</span
+          ><strong>Daily Readers:</strong>
+          {millify(stats.daily_readers)}
+        </p>
+      </div>
+    {/if}
   </div>
 </section>
 

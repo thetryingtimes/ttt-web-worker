@@ -1,4 +1,5 @@
 import type { VoteMessage } from '$lib/api/ballots/ballot';
+import type { SiteStats } from '$lib/api/kv/stats';
 
 declare global {
   namespace App {
@@ -8,6 +9,7 @@ declare global {
 
     interface PageData {
       user_id?: string;
+      stats?: SiteStats;
     }
 
     interface Platform {

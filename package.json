@@ -55,6 +55,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",
     "@supabase/supabase-js": "^2.48.1",
+    "millify": "^6.1.0",
     "stytch": "^12.3.1"
   }
 }
