@@ -16,6 +16,7 @@
   import { getFormattedDate } from '$lib/utils/date';
   import { millify } from 'millify';
   import { plural } from '$lib/utils/text';
+  import ArticleHeader from './ArticleHeader.svelte';
 
   let { external_id }: { external_id: string } = $props();
   let loading = $state(true);
@@ -53,33 +54,11 @@
 {:else if error}{:else if cached_article}
   <article class="flex flex-col gap-4 px-4">
     <div>
-      <header class="flex items-center gap-2">
-        {#if article_category}
-          <Pill text={article_category.name} theme={article_category.theme} />
-        {/if}
-        <p class="font-cond text-sm leading-1 text-gray-500 uppercase">
-          {getFormattedDate(
-            new Date(Date.parse(cached_article.article.published_at)),
-            'medium'
-          )}
-        </p>
-        {#if cached_article.article.voting_enabled}
-          <p class="font-cond text-sm leading-1 text-gray-500 uppercase">•</p>
-          <p class="font-cond text-sm leading-1 text-gray-500 uppercase">
-            {millify(
-              cached_article.votes.support + cached_article.votes.oppose
-            )}{' '}{plural(
-              cached_article.votes.support + cached_article.votes.oppose,
-              'vote',
-              'votes'
-            )}
-          </p>
-        {/if}
-      </header>
+      <ArticleHeader bind:cached_article />
       <h2 class="mt-2">
         <a
           href={`/${cached_article.article.external_id}`}
-          class="font-serif text-2xl text-pretty"
+          class="font-serif text-2xl text-pretty md:text-3xl"
           >{cached_article.article.content.title}</a
         >
       </h2>

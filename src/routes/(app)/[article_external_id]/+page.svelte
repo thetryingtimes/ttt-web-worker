@@ -1,0 +1,45 @@
+<script lang="ts">
+  import Article from '$lib/components/articles/Article.svelte';
+  import ArticleHeader from '$lib/components/articles/ArticleHeader.svelte';
+  import ArticleNav from '$lib/components/articles/ArticleNav.svelte';
+  import Impact from '$lib/components/global/Impact.svelte';
+  import showdown from 'showdown';
+  import type { PageData } from './$types';
+
+  let { data }: { data: PageData } = $props();
+</script>
+
+<svelte:head>
+  <title>{data.cached_article.article.content.title} | The Trying Times</title>
+  <meta
+    property="og:title"
+    content="{data.cached_article.article.content.title} | The Trying Times"
+  />
+  <meta
+    property="og:description"
+    content={data.cached_article.article.content.blurb}
+  />
+</svelte:head>
+
+<Impact />
+
+<div class="m-auto flex max-w-prose flex-col px-4 pt-8">
+  <ArticleHeader bind:cached_article={data.cached_article} />
+  <h1 class="mt-2 font-serif text-2xl md:text-3xl">
+    {data.cached_article.article.content.title}
+  </h1>
+</div>
+
+{#each data.cached_article.article.content.sections as section}
+  {#if section.type === 'section'}
+    <Article>
+      {@html new showdown.Converter().makeHtml(section.content)}
+    </Article>
+  {/if}
+{/each}
+
+<div class="border-t-ttt sticky bottom-0 w-screen border-t bg-[#E5F3FF]">
+  <div class="m-auto max-w-prose px-4 py-4">
+    <ArticleNav bind:cached_article={data.cached_article} />
+  </div>
+</div>
