@@ -17,7 +17,7 @@ export const POST: RequestHandler = async ({ platform, request }) => {
 
   if (parsed.success) {
     const supa = new SupabaseClient(platform);
-    const { data, error } = await supa.saveArticle(parsed.data);
+    const { data, error } = await supa.adminSaveArticle(parsed.data);
 
     if (data) return json(success);
     if (error) return json(failure);

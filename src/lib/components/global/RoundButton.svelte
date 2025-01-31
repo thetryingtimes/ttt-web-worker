@@ -6,14 +6,14 @@
     ariaControls,
     filled = false,
     onclick
-  } = $props<{
+  }: {
     icon: string;
     ariaLabel: string;
     ariaExpanded?: boolean;
     ariaControls?: string;
     filled?: boolean;
-    onclick?: Function;
-  }>();
+    onclick?: (e: MouseEvent) => void;
+  } = $props();
 </script>
 
 <button

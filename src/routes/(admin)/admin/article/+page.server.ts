@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ platform, url }) => {
     if (data && data[0]) {
       return {
         success: true,
-        article: data[0] as ArticleDraft
+        article: data[0] as unknown as ArticleDraft
       };
     } else {
       return {

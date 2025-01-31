@@ -5,13 +5,13 @@
     disabled = false,
     loading = false,
     onclick = $bindable()
-  } = $props<{
+  }: {
     label: string;
     icon?: string;
     disabled?: boolean;
     loading?: boolean;
-    onclick: Function;
-  }>();
+    onclick: (e: MouseEvent) => void;
+  } = $props();
 </script>
 
 <button

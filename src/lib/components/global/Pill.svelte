@@ -1,7 +1,9 @@
 <script lang="ts">
-  let { text } = $props<{
+  let {
+    text
+  }: {
     text: string;
-  }>();
+  } = $props();
 </script>
 
 <p

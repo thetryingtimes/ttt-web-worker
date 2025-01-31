@@ -7,7 +7,7 @@
   import { page } from '$app/state';
   import { LogoutRequestEndpoint } from '$lib/api/account/auth/logout';
 
-  let { admin = false } = $props<{ admin?: boolean }>();
+  let { admin = false }: { admin?: boolean } = $props();
   let currentMenu = $state<'main' | 'account' | ''>('');
 
   const date = new Date();
@@ -20,7 +20,7 @@
 </script>
 
 <nav
-  class="sticky top-0 flex flex-col gap-0 border-b border-b-gray-400 bg-gray-100"
+  class="sticky top-0 z-10 flex flex-col gap-0 border-b border-b-gray-400 bg-gray-100"
 >
   <div
     class="m-auto flex w-full max-w-prose items-center justify-between px-4 py-2"

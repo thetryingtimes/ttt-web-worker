@@ -1,12 +1,5 @@
-<script lang="ts">
-  import type { Article } from '$lib/articles';
+<!-- <script lang="ts">
   import Pill from '../global/Pill.svelte';
-
-  interface Props {
-    article: Article;
-  }
-
-  let { article }: Props = $props();
 
   let formattedDate = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'medium'
@@ -58,4 +51,4 @@
       <span class="text-gray-500">1.5K</span>
     </button>
   </nav>
-</article>
+</article> -->

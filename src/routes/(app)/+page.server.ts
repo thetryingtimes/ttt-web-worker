@@ -1,4 +1,3 @@
-import type { ArticleDraft } from '$lib/api/articles/article';
 import { SupabaseClient } from '$lib/server/utils/supabase';
 import type { PageServerLoad } from './$types';
 
@@ -6,18 +5,11 @@ export const load: PageServerLoad = async ({ platform }) => {
   if (!platform) return { success: false };
 
   const supa = new SupabaseClient(platform);
-  const { data, error } = await supa.adminListArticles();
+  const { data, error } = await supa.publicGetHomepageExternalIds();
 
   if (data) {
-    return {
-      success: true,
-      articles: data as unknown as ArticleDraft[]
-    };
+    return { success: true, external_ids: data };
   }
 
-  if (error) {
-    return {
-      success: false
-    };
-  }
+  return { success: false };
 };

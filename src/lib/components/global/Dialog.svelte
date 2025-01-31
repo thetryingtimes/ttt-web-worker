@@ -6,12 +6,12 @@
     header,
     children,
     actions
-  } = $props<{
+  }: {
     dialog: HTMLDialogElement;
     header: string;
     children: Snippet;
     actions?: Snippet;
-  }>();
+  } = $props();
 </script>
 
 <dialog

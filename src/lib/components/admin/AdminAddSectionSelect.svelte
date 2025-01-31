@@ -2,9 +2,11 @@
   import type { ArticleSection } from '$lib/api/articles/article';
   import AdminButton from './AdminButton.svelte';
 
-  let { sections = $bindable<ArticleSection[]>() } = $props<{
+  let {
+    sections = $bindable<ArticleSection[]>()
+  }: {
     sections: ArticleSection[];
-  }>();
+  } = $props();
 </script>
 
 <div>

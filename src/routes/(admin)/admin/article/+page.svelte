@@ -151,6 +151,7 @@
   >
     <h2 class="font-serif text-xl">Article</h2>
     <AdminTextarea label="Title" serif bind:value={draft.content.title} />
+    <AdminTextarea label="Blurb" bind:value={draft.content.blurb} />
     <div class="flex gap-4">
       <AdminCheckbox label="Published" bind:checked={draft.published} />
       <AdminCheckbox

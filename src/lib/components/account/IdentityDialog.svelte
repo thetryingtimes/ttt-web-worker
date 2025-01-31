@@ -20,11 +20,11 @@
     dialog = $bindable(),
     mode = 'account',
     oncomplete
-  } = $props<{
+  }: {
     dialog: HTMLDialogElement;
     mode?: 'account' | 'verify';
     oncomplete: (success: boolean) => void;
-  }>();
+  } = $props();
 
   let step = $state<'phone' | 'challenge' | 'blocked'>('phone');
   let header = $derived(

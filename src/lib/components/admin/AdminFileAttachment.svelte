@@ -3,11 +3,11 @@
     file,
     index,
     ondelete = () => {}
-  } = $props<{
+  }: {
     file: File;
     index: number;
     ondelete?: (index: number) => void;
-  }>();
+  } = $props();
 </script>
 
 <div class="flex items-center gap-2">

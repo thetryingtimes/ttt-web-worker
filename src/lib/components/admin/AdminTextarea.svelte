@@ -12,7 +12,7 @@
     {id}
     bind:value
     rows={lg ? 9 : 3}
-    class="ring-2 ring-gray-200"
+    class="p-1 ring-2 ring-gray-200"
     class:font-serif={serif}
     class:text-2xl={serif}
   ></textarea>
