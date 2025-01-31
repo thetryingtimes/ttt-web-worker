@@ -16,6 +16,7 @@ declare global {
       env: {
         ADMIN_USER_ID: string;
         ANTHROPIC_API_KEY: string;
+        GOOGLE_API_KEY: string;
         STYTCH_PROJECT_ID: string;
         STYTCH_SECRET: string;
         SUPABASE_PROJECT_URL: string;
