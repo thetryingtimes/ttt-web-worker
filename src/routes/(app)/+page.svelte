@@ -30,6 +30,6 @@
   <h1
     class="flex min-h-96 items-center justify-center text-center font-serif text-2xl text-gray-400"
   >
-    Down for maintenance.
+    No articles.
   </h1>
 {/if}

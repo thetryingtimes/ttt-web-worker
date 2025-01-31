@@ -6,3 +6,9 @@ export const getTodaysDate = () => {
   const day = String(today.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
+
+export const getFormattedDate = (date: Date, dateStyle: 'medium' | 'long') => {
+  return new Intl.DateTimeFormat('en-US', {
+    dateStyle
+  }).format(date);
+};

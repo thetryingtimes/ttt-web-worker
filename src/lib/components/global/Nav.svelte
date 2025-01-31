@@ -6,14 +6,12 @@
   import IdentityDialog from '../account/IdentityDialog.svelte';
   import { page } from '$app/state';
   import { LogoutRequestEndpoint } from '$lib/api/account/auth/logout';
+  import { getFormattedDate } from '$lib/utils/date';
 
   let { admin = false }: { admin?: boolean } = $props();
   let currentMenu = $state<'main' | 'account' | ''>('');
 
-  const date = new Date();
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
-    dateStyle: 'long'
-  }).format(date);
+  const formattedDate = getFormattedDate(new Date(), 'long');
 
   // svelte-ignore non_reactive_update
   let registerDialog: HTMLDialogElement;

@@ -26,3 +26,9 @@ export const ARTICLE_CATEGORIES: ArticleCategory[] = [
     theme: 'green'
   }
 ];
+
+export const getCategoryById = (
+  id: string | null = ''
+): ArticleCategory | undefined => {
+  return ARTICLE_CATEGORIES.filter((c) => c.id === id)[0];
+};

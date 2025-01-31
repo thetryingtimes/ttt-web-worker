@@ -8,6 +8,14 @@
   --font-serif: 'Roboto Serif', serif;
 }
 
+@utility animation-delay-med {
+  animation-delay: 500ms;
+}
+
+@utility animation-delay-long {
+  animation-delay: 1000ms;
+}
+
 body {
   font-family: 'Roboto', serif;
   font-optical-sizing: auto;

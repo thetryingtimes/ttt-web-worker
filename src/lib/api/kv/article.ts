@@ -17,7 +17,8 @@ export const CachedArticleParser = z.object({
   }),
   votes: z.object({
     support: z.number(),
-    oppose: z.number()
+    oppose: z.number(),
+    shares: z.number().optional()
   })
 });
 

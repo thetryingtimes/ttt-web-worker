@@ -22,7 +22,8 @@ export class KVClient {
         article: draft,
         votes: {
           support: 0,
-          oppose: 0
+          oppose: 0,
+          shares: 0
         }
       };
     }
