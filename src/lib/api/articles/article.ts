@@ -12,7 +12,7 @@ export type ArticleSection = z.infer<typeof ArticleSectionParser>;
 export const ArticleDraftParser = z.object({
   id: z.number().optional(),
   external_id: z.string(),
-  published_at: z.string().date(),
+  published_at: z.string(),
   published: z.boolean(),
   category_id: z.string().nullable(),
   voting_enabled: z.boolean(),

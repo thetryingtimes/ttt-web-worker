@@ -25,7 +25,8 @@ export class SupabaseClient {
       .from('articles')
       .select('external_id')
       .eq('published', true)
-      .order('published_at', { ascending: false });
+      .order('published_at', { ascending: false })
+      .order('id', { ascending: false });
   }
 
   async userGetBallots(stytch_user_id: string): Promise<UserBallot[]> {
