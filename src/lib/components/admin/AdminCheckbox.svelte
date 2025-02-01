@@ -8,7 +8,7 @@
 
 <div class="flex flex-col">
   <label for={id} class="font-cond relative flex items-center gap-2 uppercase">
-    <span class="material-symbols-outlined">
+    <span class="material-symbols-outlined" aria-hidden="true">
       {#if checked}check_box{/if}
       {#if !checked}check_box_outline_blank{/if}
     </span>

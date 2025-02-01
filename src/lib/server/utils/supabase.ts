@@ -36,7 +36,7 @@ export class SupabaseClient {
     const { data } = await this.client
       .from('articles')
       .select()
-      .eq('article_external_id', article_external_id);
+      .eq('external_id', article_external_id);
 
     return data?.length === 1 && data[0].voting_enabled === true;
   }

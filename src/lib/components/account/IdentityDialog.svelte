@@ -15,6 +15,7 @@
     VerifyResponseParser,
     type VerifyResponseType
   } from '$lib/api/account/auth/verify';
+  import { invalidateAll } from '$app/navigation';
 
   let {
     dialog = $bindable(),
@@ -26,7 +27,7 @@
     oncomplete: (success: boolean) => void;
   } = $props();
 
-  let step = $state<'phone' | 'challenge' | 'blocked'>('phone');
+  let step: 'phone' | 'challenge' | 'blocked' = $state('phone');
   let header = $derived(
     mode === 'account' ? `Sign in or register` : `Verify your identity`
   );
@@ -45,7 +46,8 @@
 
   let method_id: string;
 
-  const completeAndReset = (status: boolean) => {
+  const completeAndReset = async (status: boolean) => {
+    await invalidateAll();
     oncomplete(status);
 
     phone = '';
@@ -115,7 +117,7 @@
 
       if (res && res.success) {
         method_id = '';
-        completeAndReset(true);
+        await completeAndReset(true);
       } else {
         codeError = true;
         codeLoading = false;
@@ -127,8 +129,8 @@
 {#snippet blockedActions()}
   <ActionButton
     label="Done"
-    onclick={() => {
-      completeAndReset(false);
+    onclick={async () => {
+      await completeAndReset(false);
     }}
   />
 {/snippet}

@@ -148,8 +148,7 @@
 <IdentityDialog
   bind:dialog={registerDialog}
   mode="account"
-  oncomplete={async (success) => {
-    await invalidateAll();
+  oncomplete={() => {
     registerDialog.close();
   }}
 />

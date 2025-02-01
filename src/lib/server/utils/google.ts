@@ -26,7 +26,6 @@ export class GoogleMapsClient {
     try {
       const req = await fetch(endpoint);
       const res = await req.json();
-      console.log(res);
       const parsed = ResultsParser.parse(res);
 
       let country = '';

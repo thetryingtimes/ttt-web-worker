@@ -22,7 +22,9 @@
   {#if loading}
     <span class="material-symbols-outlined animate-spin">refresh</span>
   {:else}
-    {#if icon}<span class="material-symbols-outlined">{icon}</span>{/if}
+    {#if icon}<span class="material-symbols-outlined" aria-hidden="true"
+        >{icon}</span
+      >{/if}
     {label}
   {/if}
 </button>
