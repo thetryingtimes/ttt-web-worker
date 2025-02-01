@@ -20,6 +20,7 @@
   import BallotCastButton from './BallotCastButton.svelte';
   import { formatCountyAndState } from '$lib/utils/vote';
   import { shareArticle } from '$lib/utils/share';
+  import { invalidateAll } from '$app/navigation';
 
   let {
     dialog = $bindable(),
@@ -109,6 +110,7 @@
           ballotId = res.ballot_id;
           finalVote = selected.toString();
           step = 'confirmed';
+          await invalidateAll();
         } else {
           step = 'blocked';
         }

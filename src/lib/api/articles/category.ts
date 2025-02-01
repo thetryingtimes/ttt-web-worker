@@ -18,6 +18,11 @@ export const ARTICLE_CATEGORIES: ArticleCategory[] = [
   {
     id: 'eo',
     name: 'Executive Order',
+    theme: 'blue'
+  },
+  {
+    id: 'state',
+    name: 'State',
     theme: 'red'
   },
   {

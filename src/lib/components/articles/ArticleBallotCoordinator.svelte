@@ -25,8 +25,8 @@
     }
   };
 
-  const ballotComplete = async (success: boolean) => {
-    if (success) await invalidateAll();
+  const ballotComplete = (success: boolean) => {
+    if (success) invalidateAll().then(() => {});
   };
 
   // svelte-ignore non_reactive_update

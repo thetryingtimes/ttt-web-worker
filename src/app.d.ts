@@ -1,4 +1,4 @@
-import type { VoteMessage } from '$lib/api/ballots/ballot';
+import type { UserBallot, VoteMessage } from '$lib/api/ballots/ballot';
 import type { SiteStats } from '$lib/api/kv/stats';
 
 declare global {
@@ -9,6 +9,7 @@ declare global {
 
     interface PageData {
       user_id?: string;
+      user_ballots: UserBallot[];
       stats?: SiteStats;
     }
 

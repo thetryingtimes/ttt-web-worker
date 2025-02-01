@@ -2,7 +2,7 @@ import type { ArticleDraft } from '$lib/api/articles/article';
 import { createClient } from '@supabase/supabase-js';
 import { type Database } from './supabase.d';
 import { KVClient } from './kv';
-import type { Ballot } from '$lib/api/ballots/ballot';
+import type { Ballot, UserBallot } from '$lib/api/ballots/ballot';
 
 export class SupabaseClient {
   private platform;
@@ -26,6 +26,15 @@ export class SupabaseClient {
       .select('external_id')
       .eq('published', true)
       .order('published_at', { ascending: false });
+  }
+
+  async userGetBallots(stytch_user_id: string): Promise<UserBallot[]> {
+    const { data } = await this.client
+      .from('ballots')
+      .select('article_external_id,support,oppose')
+      .eq('stytch_user_id', stytch_user_id);
+
+    return data || [];
   }
 
   async userCreateBallot(ballot: Ballot) {

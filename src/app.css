@@ -62,3 +62,7 @@ body {
     text-wrap: pretty;
   }
 }
+
+button {
+  cursor: pointer;
+}

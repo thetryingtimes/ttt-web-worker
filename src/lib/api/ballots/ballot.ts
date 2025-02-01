@@ -19,3 +19,9 @@ export const BallotParser = z.object({
 });
 
 export type Ballot = z.infer<typeof BallotParser>;
+
+export type UserBallot = {
+  article_external_id: string;
+  support: boolean | null;
+  oppose: boolean | null;
+};
