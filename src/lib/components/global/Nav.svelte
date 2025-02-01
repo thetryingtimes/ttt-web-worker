@@ -148,9 +148,7 @@
 <IdentityDialog
   bind:dialog={registerDialog}
   mode="account"
-  oncomplete={() => {
-    registerDialog.close();
-  }}
+  oncomplete={() => {}}
 />
 
 <style>

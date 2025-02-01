@@ -48,6 +48,7 @@
 
   const completeAndReset = async (status: boolean) => {
     await invalidateAll();
+    dialog.close();
     oncomplete(status);
 
     phone = '';
@@ -73,7 +74,7 @@
   </p>
   <ActionButton
     label="Next: Text Verification Code"
-    disabled={phoneValid === false}
+    disabled={phoneValid === false || phone === ''}
     loading={phoneLoading}
     onclick={async () => {
       phoneError = false;
@@ -100,7 +101,7 @@
 {#snippet challengeActions()}
   <ActionButton
     label="Next: Verify and continue"
-    disabled={codeValid === false}
+    disabled={codeValid === false || code === ''}
     loading={codeLoading}
     onclick={async () => {
       codeError = false;
@@ -172,7 +173,7 @@
           inputmode="tel"
           pattern="\+1(\d){'{10}'}"
           bind:value={phone}
-          onblur={(e) => {
+          oninput={(e) => {
             if (phone === '') return;
             phone = `+1` + phone.replace(/^\+1/, '').replace(/([^\d])/g, '');
             phoneValid = (e.target as HTMLInputElement).reportValidity();
@@ -204,7 +205,7 @@
           inputmode="numeric"
           pattern="(\d){'{6}'}"
           bind:value={code}
-          onblur={(e) => {
+          oninput={(e) => {
             code = code.replace(/([^\d])/g, '');
             codeValid = (e.target as HTMLInputElement).reportValidity();
           }}
