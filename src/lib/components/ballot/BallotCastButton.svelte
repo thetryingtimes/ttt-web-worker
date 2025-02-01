@@ -38,6 +38,9 @@
 <button
   class="bg-ttt relative flex grow items-center justify-center gap-1 border-[5px] border-white px-4 py-4 text-xl font-bold text-white select-none"
   disabled={complete}
+  ontouchstart={start}
+  ontouchend={stop}
+  ontouchcancel={stop}
   onmousedown={start}
   onmouseup={stop}
   onmouseout={stop}
