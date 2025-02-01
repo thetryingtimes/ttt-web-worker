@@ -205,7 +205,7 @@
         </p>
       {/if}
     </div>
-    <p>
+    <p class="text-pretty">
       <strong>Thanks for supporting democracy!</strong> Share with your friends to
       increase your impact.
     </p>

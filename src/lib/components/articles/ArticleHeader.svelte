@@ -20,7 +20,7 @@
   {/if}
   <p class="font-cond text-sm leading-1 text-gray-500 uppercase">
     {getFormattedDate(
-      new Date(Date.parse(cached_article.article.published_at)),
+      new Date(Date.parse(cached_article.article.published_at + 'T00:00:00')),
       'medium'
     )}
   </p>
