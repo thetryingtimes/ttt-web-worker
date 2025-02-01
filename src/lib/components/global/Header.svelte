@@ -13,7 +13,7 @@
   <div class="m-auto flex max-w-prose flex-col items-center p-4 py-8">
     <a href="/" class="w-full md:w-3/4">
       <img
-        src="/lockup.svg"
+        src="/lockup.png"
         alt="The Trying Times"
         class="w-full select-none"
       />
