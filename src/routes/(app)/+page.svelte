@@ -21,7 +21,7 @@
 
 {#if data.success && data.list && data.list.length}
   <h1 class="sr-only">Articles:</h1>
-  <div class="m-auto flex w-full max-w-prose flex-col gap-8 py-8">
+  <div class="m-auto flex w-full max-w-prose flex-col gap-12 py-8">
     {#each external_ids as item}
       <ArticlePreview external_id={item.external_id} />
     {/each}
