@@ -121,7 +121,9 @@
       {/each}
     </div>
     {#if draft.knowledge}
-      <div class="prose"><pre>{draft.knowledge}</pre></div>
+      <div class="prose">
+        <pre class="whitespace-pre-wrap">{draft.knowledge}</pre>
+      </div>
     {/if}
     <div>
       <AdminButton
