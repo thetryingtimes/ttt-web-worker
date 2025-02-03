@@ -58,7 +58,8 @@
             class="text-pretty"
           >
             {cached_article.article.content.blurb}
-            <span class="font-cond text-ttt uppercase group-hover:underline"
+            <span
+              class="font-cond text-ttt whitespace-nowrap uppercase group-hover:underline"
               >Read &gt;&gt;</span
             >
           </a>
