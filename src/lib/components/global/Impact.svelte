@@ -78,7 +78,7 @@
         <p class="flex items-center gap-1">
           <span aria-hidden="true" class="material-symbols-outlined"
             >person</span
-          ><strong>Daily Readers:</strong>
+          ><strong>Weekly Readers:</strong>
           {millify(stats.daily_readers)}
         </p>
       </div>
