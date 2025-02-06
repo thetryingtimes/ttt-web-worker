@@ -166,15 +166,20 @@
 >
   {#if step !== 'blocked'}
     <div>
-      <div class="text-sm font-bold text-white/80 uppercase">
-        {getFormattedDate(
-          new Date(
-            Date.parse(cached_article.article.published_at + 'T00:00:00')
-          ),
-          'medium'
-        )}{' • '}
-        {totalVotes}{' '}
-        {plural(totalVotes, 'vote', 'votes')}
+      <div class="flex gap-2 text-sm font-bold text-white/80 uppercase">
+        <span
+          >{getFormattedDate(
+            new Date(
+              Date.parse(cached_article.article.published_at + 'T00:00:00')
+            ),
+            'medium'
+          )}</span
+        >
+        <span>•</span>
+        <span
+          >{totalVotes}{' '}
+          {plural(totalVotes, 'vote', 'votes')}</span
+        >
       </div>
       <h3 class="line-clamp-2 font-bold">
         {cached_article.article.content.title}
