@@ -24,12 +24,17 @@ export const POST: RequestHandler = async ({ request, platform }) => {
       phone_number: parsed.data.phone_number
     });
 
-    const success: LoginResponseType = {
-      success: true,
-      method_id: res.phone_id
-    };
+    if (res && res.phone_id) {
+      const success: LoginResponseType = {
+        success: true,
+        method_id: res.phone_id
+      };
 
-    return json(success);
+      return json(success);
+    } else {
+      console.log(`>> login: didn't get a phone_id`, res);
+      return json(failure);
+    }
   } catch (e) {
     console.log('>> login:', e);
     return json(failure);
