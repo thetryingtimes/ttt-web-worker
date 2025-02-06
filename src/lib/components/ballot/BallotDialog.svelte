@@ -21,6 +21,8 @@
   import { formatCountyAndState } from '$lib/utils/vote';
   import { shareArticle } from '$lib/utils/share';
   import { invalidateAll } from '$app/navigation';
+  import { plural } from '$lib/utils/text';
+  import { getFormattedDate } from '$lib/utils/date';
 
   let {
     dialog = $bindable(),
@@ -34,6 +36,9 @@
     oncomplete: (success: boolean) => void;
   } = $props();
 
+  let totalVotes = $derived(
+    cached_article.votes.support + cached_article.votes.oppose
+  );
   let step: 'init' | 'cast' | 'confirmed' | 'blocked' = $state('init');
   let header = $derived(
     step === 'init' || step === 'cast'
@@ -161,14 +166,24 @@
 >
   {#if step !== 'blocked'}
     <div>
-      <h3 class="line-clamp-3 font-bold">
+      <div class="text-sm font-bold text-white/80 uppercase">
+        {getFormattedDate(
+          new Date(
+            Date.parse(cached_article.article.published_at + 'T00:00:00')
+          ),
+          'medium'
+        )}{' • '}
+        {totalVotes}{' '}
+        {plural(totalVotes, 'vote', 'votes')}
+      </div>
+      <h3 class="line-clamp-2 font-bold">
         {cached_article.article.content.title}
       </h3>
       <p class="line-clamp-2">{cached_article.article.content.blurb}</p>
     </div>
   {/if}
   {#if step === 'init' || step === 'cast'}
-    <BallotRadio bind:value={selected} />
+    <BallotRadio bind:value={selected} {cached_article} />
   {/if}
   {#if step === 'init' && gotLocationError}
     <p in:slide>
