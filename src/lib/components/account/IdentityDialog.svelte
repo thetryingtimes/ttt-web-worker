@@ -27,7 +27,7 @@
     oncomplete: (success: boolean) => void;
   } = $props();
 
-  let step: 'phone' | 'challenge' | 'blocked' = $state('phone');
+  let step: 'phone' | 'challenge' | 'blocked' | 'complete' = $state('phone');
   let header = $derived(
     mode === 'account' ? `Sign in or register` : `Verify your identity`
   );
@@ -44,13 +44,14 @@
   let codeLoading: boolean = $state(false);
   let codeError: boolean = $state(false);
 
-  let method_id: string;
+  let method_id: string = $state('');
 
   const completeAndReset = async (status: boolean) => {
     await invalidateAll();
     dialog.close();
     oncomplete(status);
 
+    step = 'phone';
     phone = '';
     phoneValid = false;
     phoneLoading = false;
@@ -118,7 +119,7 @@
 
       if (res && res.success) {
         method_id = '';
-        await completeAndReset(true);
+        step = 'complete';
       } else {
         codeError = true;
         codeLoading = false;
@@ -136,21 +137,33 @@
   />
 {/snippet}
 
+{#snippet completeActions()}
+  <ActionButton
+    label={mode === 'account' ? "Let's go!" : 'Continue to vote'}
+    onclick={async () => {
+      await completeAndReset(true);
+    }}
+  />
+{/snippet}
+
 <Dialog
   bind:dialog
   actions={step === 'phone'
     ? phoneActions
     : step === 'challenge'
       ? challengeActions
-      : blockedActions}
+      : step === 'complete'
+        ? completeActions
+        : blockedActions}
   header={`${header} <span class="text-white/50">${headerLabel}</span>`}
 >
-  {#if step !== 'blocked'}
+  {#if step === 'phone' || step === 'challenge'}
     <p>
       <strong>Your phone number is your voter ID.</strong> To keep voting fair, we'll
       text you a verification code.
     </p>
-  {:else}
+  {/if}
+  {#if step === 'blocked'}
     <p><strong>You have been blocked.</strong></p>
   {/if}
   {#if step === 'phone'}
@@ -187,7 +200,7 @@
     {/if}
   {/if}
   {#if step === 'challenge'}
-    <fieldset class="flex flex-col gap-2" in:slide>
+    <fieldset class="flex flex-col gap-2" in:slide out:slide>
       <label for="code-field" id="code-label" class="font-bold"
         >Enter the verification code we just texted you:</label
       >
@@ -228,5 +241,10 @@
     {#if codeError}
       <p>Something went wrong, please try again.</p>
     {/if}
+  {/if}
+  {#if step === 'complete'}
+    <p in:slide>
+      <strong>You're good to go.</strong> Welcome to The Trying Times!
+    </p>
   {/if}
 </Dialog>
