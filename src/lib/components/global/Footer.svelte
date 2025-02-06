@@ -33,11 +33,9 @@
 >
   <div class="m-auto flex max-w-prose flex-col gap-4">
     <div class="flex gap-2 px-2">
-      <img
-        src="/icon.svg"
-        alt="The Trying Times"
-        class="aspect-square grow-0"
-      />
+      <a href="/" class="grow-0">
+        <img src="/icon.svg" alt="The Trying Times" class="aspect-square" />
+      </a>
       <div class="flex grow flex-col items-center justify-center gap-2 text-sm">
         <p class="text-center text-balance md:px-8">
           “The only thing necessary for the triumph of evil is for good men to
