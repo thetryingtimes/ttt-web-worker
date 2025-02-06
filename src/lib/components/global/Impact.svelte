@@ -12,6 +12,8 @@
   import { millify } from 'millify';
   import { page } from '$app/state';
 
+  const lsKey = 'impactV2AutoShown';
+
   // svelte-ignore non_reactive_update
   let dialog: HTMLDialogElement;
   let stats: SiteStats | undefined = $state(page.data.stats);
@@ -30,11 +32,11 @@
 
   onMount(() => {
     try {
-      const autoShown = localStorage.getItem('impactAutoShown');
+      const autoShown = localStorage.getItem(lsKey);
 
       if (autoShown !== 'yes') {
         dialog.showModal();
-        localStorage.setItem('impactAutoShown', 'yes');
+        localStorage.setItem(lsKey, 'yes');
       }
     } catch (e) {}
 
@@ -53,8 +55,8 @@
     class="m-auto flex flex-col items-center gap-4 p-4 text-center text-sm text-white"
   >
     <p>
-      <strong>Your vote is your voice.</strong> TTT is a news platform to fight
-      billionaires,
+      <strong>Your vote is your voice!</strong> The Trying Times is holding
+      Congress accountable,
       <a
         href="#impact"
         aria-label="Click to read about The Trying Times"
@@ -64,8 +66,8 @@
           dialog.showModal();
         }}
       >
-        <strong>and we need your help!</strong>
-      </a>
+        <strong>here's how</strong>
+      </a>.
     </p>
     {#if stats}
       <div class="flex gap-4">
@@ -88,7 +90,7 @@
 
 {#snippet actions()}
   <ActionButton
-    label="Share"
+    label="Invite friends"
     icon="ios_share"
     onclick={() => {
       try {
@@ -97,22 +99,18 @@
     }}
   />
   <ActionButton
-    label="I'm in!"
+    label="Let's go!"
     onclick={() => {
       dialog.close();
     }}
   />
 {/snippet}
 
-<Dialog
-  bind:dialog
-  {actions}
-  header="Billionaires control our food, healthcare, media — and government."
->
-  <p>
-    <strong>
-      It's a rigged game, but there's a loophole: public pressure.
-    </strong> The Trying Times needs your help:
+<Dialog bind:dialog {actions} header="Join the resistance">
+  <p class="text-pretty">
+    The Trying Times is a news platform holding Congress accountable. <strong>
+      Here’s how:
+    </strong>
   </p>
   <ol class="flex flex-col gap-6">
     <li class="flex gap-2">
@@ -121,9 +119,9 @@
         >1</span
       >
       <p class="pt-0.5">
-        <strong class="text-xl font-bold">Skip the rage-bait</strong><br />We
-        publish news based on legislation, not tweets, informing you of the
-        facts.
+        <strong class="text-xl font-bold"
+          >Learn how laws &amp; policy will impact your life</strong
+        >
       </p>
     </li>
     <li class="flex gap-2">
@@ -132,8 +130,9 @@
         >2</span
       >
       <p class="pt-0.5">
-        <strong class="text-xl font-bold">Vote on every article</strong><br
-        />Make your voice heard by voting SUPPORT or OPPOSE on each article.
+        <strong class="text-xl font-bold"
+          >Vote to SUPPORT or OPPOSE, just like Congress</strong
+        >
       </p>
     </li>
     <li class="flex gap-2">
@@ -142,9 +141,9 @@
         >3</span
       >
       <p class="pt-0.5">
-        <strong class="text-xl font-bold">Share to build IRL pressure</strong
-        ><br />When WE, THE PEOPLE speak up, we put pressure on billionaires and
-        get change.
+        <strong class="text-xl font-bold"
+          >Share to build pressure politicians can’t ignore</strong
+        >
       </p>
     </li>
   </ol>
