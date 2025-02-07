@@ -32,12 +32,12 @@
             >check_circle</span
           >
           YOU SUPPORT
-          <span class="text-gray-400">{total_support}</span>
+          <span class="text-gray-500">{total_support}</span>
         </div>
       {:else}
         <div class="font-cond">
           SUPPORT
-          <span class="text-gray-400">{total_support}</span>
+          <span class="text-gray-500">{total_support}</span>
         </div>
       {/if}
       {#if user_ballot.oppose}
@@ -48,12 +48,12 @@
             >check_circle</span
           >
           YOU OPPOSE
-          <span class="text-gray-400">{total_oppose}</span>
+          <span class="text-gray-500">{total_oppose}</span>
         </div>
       {:else}
         <div class="font-cond">
           OPPOSE
-          <span class="text-gray-400">{total_oppose}</span>
+          <span class="text-gray-500">{total_oppose}</span>
         </div>
       {/if}
     {:else}
@@ -68,7 +68,7 @@
           aria-hidden="true">thumb_up</span
         >
         <span class="group-hover:underline">SUPPORT</span>
-        <span class="text-gray-400">{total_support}</span>
+        <span class="text-gray-500">{total_support}</span>
       </button>
       <button
         class="font-cond group flex items-center gap-1 uppercase"
@@ -81,7 +81,7 @@
           aria-hidden="true">thumb_down</span
         >
         <span class="group-hover:underline">OPPOSE</span>
-        <span class="text-gray-400">{total_oppose}</span>
+        <span class="text-gray-500">{total_oppose}</span>
       </button>
     {/if}
   {/if}
@@ -95,7 +95,7 @@
       >ios_share</span
     >
     <span class="group-hover:underline">SHARE</span>
-    <span class="text-gray-400"
+    <span class="text-gray-500"
       >{millify(cached_article.votes.shares || 0)}</span
     >
   </button>
