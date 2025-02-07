@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CachedArticle } from '$lib/api/kv/article';
-  import millify from 'millify';
+  import { millify } from 'millify';
   import { nanoid } from 'nanoid';
 
   let {
