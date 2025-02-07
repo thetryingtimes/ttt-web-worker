@@ -11,7 +11,10 @@ export const POST: RequestHandler = async ({ platform, request }) => {
   const req = await request.json();
   const parsed = GeoRequestParser.safeParse(req);
 
-  if (!parsed.success) return json(failure);
+  if (!parsed.success) {
+    console.log('> [geo] failed to parse', JSON.stringify(req, null, 2));
+    return json(failure);
+  }
 
   const res = await GoogleMapsClient.geocode(
     platform,

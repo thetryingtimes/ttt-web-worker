@@ -37,19 +37,37 @@ export class GoogleMapsClient {
       parsed.results[0].address_components.forEach((component) => {
         if (component.types.includes('country')) country = component.short_name;
 
-        if (component.types.includes('administrative_area_level_1'))
+        if (
+          component.types.includes('administrative_area_level_1') ||
+          component.types.includes('locality')
+        )
           props.state = component.short_name;
 
         if (component.types.includes('administrative_area_level_2'))
           props.county = component.short_name;
       });
 
-      if (country !== 'US') return { success: false };
-      if (props.state === '' || props.county === '') return { success: false };
+      if (country !== 'US') {
+        console.log(
+          '[google]',
+          'not US',
+          JSON.stringify(parsed.results[0], null, 2)
+        );
+        return { success: false };
+      }
+
+      if (props.state === '' || props.county === '') {
+        console.log(
+          '[google]',
+          'no state or county',
+          JSON.stringify(parsed.results[0], null, 2)
+        );
+        return { success: false };
+      }
 
       return { success: true, props };
     } catch (e) {
-      console.log(e);
+      console.log('[google] got error', e);
     }
 
     return { success: false };
