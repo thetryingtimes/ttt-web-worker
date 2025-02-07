@@ -16,6 +16,7 @@
     type VerifyResponseType
   } from '$lib/api/account/auth/verify';
   import { invalidateAll } from '$app/navigation';
+  import { nanoid } from 'nanoid';
 
   let {
     dialog = $bindable(),
@@ -59,6 +60,13 @@
     codeValid = false;
     codeLoading = false;
   };
+
+  const phoneLabelId = nanoid();
+  const phoneId = nanoid();
+  const phoneHintId = nanoid();
+  const codeLabelId = nanoid();
+  const codeId = nanoid();
+  const codeHintId = nanoid();
 </script>
 
 {#snippet phoneActions()}
@@ -168,7 +176,7 @@
   {/if}
   {#if step === 'phone'}
     <fieldset class="flex flex-col gap-2" out:slide>
-      <label for="phone-field" id="phone-label" class="font-bold"
+      <label for={phoneId} id={phoneLabelId} class="font-bold"
         >Enter your phone number:</label
       >
       <div
@@ -176,10 +184,10 @@
       >
         <span class="material-symbols-outlined" aria-hidden="true">call</span>
         <input
-          id="phone-field"
+          id={phoneId}
           name="phone"
           type="text"
-          aria-labelledby="phone-label phone-hint"
+          aria-labelledby="{phoneLabelId} {phoneHintId}"
           class="grow p-1 placeholder:text-white/80 focus:ring-0 focus:outline-0"
           placeholder="(555) 555-5555"
           autocomplete="tel"
@@ -193,7 +201,7 @@
           }}
         />
       </div>
-      <span id="phone-hint">We will never sell your number or spam you.</span>
+      <span id={phoneHintId}>We will never sell your number or spam you.</span>
     </fieldset>
     {#if phoneError}
       <p>Something went wrong, please try again.</p>
@@ -201,7 +209,7 @@
   {/if}
   {#if step === 'challenge'}
     <fieldset class="flex flex-col gap-2" in:slide out:slide>
-      <label for="code-field" id="code-label" class="font-bold"
+      <label for={codeId} id={codeLabelId} class="font-bold"
         >Enter the verification code we just texted you:</label
       >
       <div
@@ -209,9 +217,9 @@
       >
         <span class="material-symbols-outlined" aria-hidden="true">lock</span>
         <input
-          id="code-field"
+          id={codeId}
           type="text"
-          aria-labelledby="code-label code-hint"
+          aria-labelledby="{codeLabelId} {codeHintId}"
           class="grow p-1 placeholder:text-white/80 focus:ring-0 focus:outline-0"
           placeholder="123456"
           autocomplete="one-time-code"
@@ -224,7 +232,7 @@
           }}
         />
       </div>
-      <span id="code-hint"
+      <span id={codeHintId}
         >Didn't get a text? <a
           href="#start-over"
           class="underline"
