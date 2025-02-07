@@ -1,6 +1,7 @@
 import type { VoteRequestProps } from '$lib/api/ballots/vote';
 import type { GeoResponse } from '$lib/api/geo/geo';
 import { z } from 'zod';
+import { R2Logger } from './logger';
 
 const ResultsParser = z.object({
   results: z.array(
@@ -53,6 +54,14 @@ export class GoogleMapsClient {
           'not US',
           JSON.stringify(parsed.results[0], null, 2)
         );
+
+        await R2Logger.log(platform, {
+          err: `[google] country not US`,
+          body: parsed.results[0],
+          req,
+          parsed
+        });
+
         return { success: false };
       }
 
@@ -63,12 +72,26 @@ export class GoogleMapsClient {
           JSON.stringify(parsed.results[0], null, 2)
         );
         console.log(JSON.stringify(props, null, 2));
+
+        await R2Logger.log(platform, {
+          err: `[google] no state or country`,
+          body: {
+            parsed,
+            props
+          }
+        });
+
         return { success: false };
       }
 
       return { success: true, props };
     } catch (e) {
       console.log('[google] got error', e);
+
+      await R2Logger.log(platform, {
+        err: `[google] got error`,
+        msg: JSON.stringify(e, null, 2)
+      });
     }
 
     return { success: false };

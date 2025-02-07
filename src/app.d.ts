@@ -25,6 +25,7 @@ declare global {
 
         ARTICLES: KVNamespace;
         TABULATOR: Queue<VoteMessage>;
+        LOGS: R2Bucket;
       };
       cf: CfProperties;
       ctx: ExecutionContext;

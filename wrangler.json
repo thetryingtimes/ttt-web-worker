@@ -3,7 +3,7 @@
   "name": "ttt-web-worker",
   "main": ".svelte-kit/cloudflare/_worker.js",
   "compatibility_date": "2025-01-24",
-  "logpush": true,
+  "logpush": false,
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare"
@@ -36,5 +36,6 @@
         "binding": "TABULATOR"
       }
     ]
-  }
+  },
+  "r2_buckets": [{ "binding": "LOGS", "bucket_name": "logs" }]
 }
