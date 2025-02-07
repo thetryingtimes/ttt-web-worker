@@ -192,11 +192,11 @@
   {/if}
   {#if step === 'init' && gotLocationError}
     <p in:slide>
-      Only readers in the US are permitted to vote. Your exact location is not
-      stored. Please verify your location to continue. Refer to our <a
-        href="/privacy-policy"
-        class="font-bold underline"
-        target="_blank">privacy policy</a
+      <strong>Trouble confirming your location?</strong> Make sure you're in the
+      US and that your browser has location access. Only your county & state are
+      stored. Refer to our
+      <a href="/privacy-policy" class="font-bold underline" target="_blank"
+        >privacy policy</a
       > for details.
     </p>
   {/if}
@@ -233,9 +233,26 @@
   {#if step === 'blocked'}
     <p>You have been prevented from voting for one of the following reasons:</p>
     <ul class="list-decimal pl-8">
-      <li>Your location is not in the US</li>
-      <li>You have already voted</li>
-      <li>You have been blocked</li>
+      <li>
+        <strong>We couldn't confirm your location.</strong> Make sure your
+        browser has location services enabled and
+        <a
+          href="#restart"
+          class="font-bold underline"
+          onclick={(e) => {
+            e.preventDefault();
+            step = 'init';
+          }}>try again</a
+        > if this was a mistake.
+      </li>
+      <li>
+        <strong>You have already voted.</strong> Only one vote per user per article
+        is allowed.
+      </li>
+      <li>
+        <strong>You have been blocked.</strong> If we detect fraudulent activity
+        on your account, you may be prevented from voting.
+      </li>
     </ul>
   {/if}
 </Dialog>
