@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { CachedArticle } from '$lib/api/kv/article';
+  import millify from 'millify';
   import { nanoid } from 'nanoid';
 
   let {
@@ -7,15 +8,8 @@
     cached_article
   }: { value: string; cached_article: CachedArticle } = $props();
 
-  let total_votes = $derived(
-    cached_article.votes.support + cached_article.votes.oppose
-  );
-  let percent_support = $derived(
-    Math.floor((cached_article.votes.support / (total_votes || 1)) * 100)
-  );
-  let percent_oppose = $derived(
-    Math.floor((cached_article.votes.oppose / (total_votes || 1)) * 100)
-  );
+  let total_support = $derived(millify(cached_article.votes.support));
+  let total_oppose = $derived(millify(cached_article.votes.oppose));
 
   const describedById = nanoid();
   const name = nanoid();
@@ -45,7 +39,7 @@
       </span>
       <span class="font-bold" id={supportId}
         >SUPPORT
-        <span class="font-normal text-white/80"> {percent_support}%</span>
+        <span class="font-normal text-white/80"> {total_support}</span>
       </span>
     </label>
     <label
@@ -65,7 +59,7 @@
       </span>
       <span class="font-bold" id={opposeId}
         >OPPOSE
-        <span class="font-normal text-white/80"> {percent_oppose}%</span>
+        <span class="font-normal text-white/80"> {total_oppose}</span>
       </span>
     </label>
   </div>
