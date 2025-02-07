@@ -37,13 +37,13 @@ export class GoogleMapsClient {
       parsed.results[0].address_components.forEach((component) => {
         if (component.types.includes('country')) country = component.short_name;
 
-        if (
-          component.types.includes('administrative_area_level_1') ||
-          component.types.includes('locality')
-        )
+        if (component.types.includes('administrative_area_level_1'))
           props.state = component.short_name;
 
-        if (component.types.includes('administrative_area_level_2'))
+        if (
+          component.types.includes('administrative_area_level_2') ||
+          component.types.includes('locality')
+        )
           props.county = component.short_name;
       });
 
@@ -62,6 +62,7 @@ export class GoogleMapsClient {
           'no state or county',
           JSON.stringify(parsed.results[0], null, 2)
         );
+        console.log(JSON.stringify(props, null, 2));
         return { success: false };
       }
 
