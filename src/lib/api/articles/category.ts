@@ -29,6 +29,11 @@ export const ARTICLE_CATEGORIES: ArticleCategory[] = [
     id: 'editorial',
     name: 'Editorial',
     theme: 'green'
+  },
+  {
+    id: 'justice',
+    name: 'Justice Dept.',
+    theme: 'red'
   }
 ];
 
