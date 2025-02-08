@@ -22,7 +22,7 @@ export class GoogleMapsClient {
     lat: number,
     lng: number
   ): Promise<GeoResponse> {
-    const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${platform.env.GOOGLE_API_KEY}&result_type=country|administrative_area_level_1|administrative_area_level_2`;
+    const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${platform.env.GOOGLE_API_KEY}&result_type=country|administrative_area_level_1|administrative_area_level_2|locality`;
 
     try {
       const req = await fetch(endpoint);
