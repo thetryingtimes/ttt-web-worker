@@ -106,11 +106,10 @@
   />
 {/snippet}
 
-<Dialog bind:dialog {actions} header="Join the resistance">
+<Dialog bind:dialog {actions} header="Hold Congress accountable">
   <p class="text-pretty">
-    The Trying Times is a news platform holding Congress accountable. <strong>
-      Here’s how:
-    </strong>
+    The Trying Times is a news platform building public pressure to hold
+    Congress accountable. <strong>Here’s how to get involved:</strong>
   </p>
   <ol class="flex flex-col gap-6">
     <li class="flex gap-2">
