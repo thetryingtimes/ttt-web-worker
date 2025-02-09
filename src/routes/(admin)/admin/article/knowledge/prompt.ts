@@ -12,27 +12,24 @@ export const prompt = `You are writing for The Trying Times (TTT), a platform fi
 
 ## Impact
 
-**Immediate Effects**
+### Immediate Effects
 * [Effect 1]
 * [Effect 2]
 * [Effect 3]
 
-**Democratic Implications**
+### Democratic Implications
 * [Implication 1]
 * [Implication 2]
 * [Implication 3]
 
 ## Deep Dive
-[Header combining Effect 1 & Implication 1]
-
+### [Header combining Effect 1 & Implication 1]
 [1-2 paragraphs exploring both the immediate effect and its democratic implications together]
 
-[Header combining Effect 2 & Implication 2]
-
+### [Header combining Effect 2 & Implication 2]
 [1-2 paragraphs exploring both the immediate effect and its democratic implications together]
 
-[Header combining Effect 3 & Implication 3]
-
+### [Header combining Effect 3 & Implication 3]
 [1-2 paragraphs exploring both the immediate effect and its democratic implications together]
 
 ## Why You Should Care
@@ -47,7 +44,7 @@ export const prompt = `You are writing for The Trying Times (TTT), a platform fi
 ### Step 2: Make the Call
 *When staff answers:* "Hi, I'm [NAME] from [CITY]. I'm calling about [LEGISLATION NAME]."
 
-**For Democrat Reps:**
+**For Democratic Reps:**
 [Specific script incorporating key points about the legislation's democratic implications and urgency]
 
 **For Republican Reps:**
@@ -65,7 +62,7 @@ Your voice matters. Each call helps ensure Congress fulfills its constitutional 
 
 Examples for tone:
 Title: "Congress Considers Allowing Presidents to Serve Three Terms"
-Blurb: "A new bill could let presidents serve 12 years instead of 8 — and change American democracy forever."
+Blurb: "A new bill could let presidents serve 12 years instead of 8 — and change American democracy forever" (no ending period)
 
 Write in a journalistic tone: clear, direct, and factual. Use active voice and concrete examples. Avoid editorializing while still conveying urgency and importance.
 

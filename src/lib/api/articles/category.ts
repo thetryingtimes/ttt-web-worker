@@ -23,7 +23,7 @@ export const ARTICLE_CATEGORIES: ArticleCategory[] = [
   {
     id: 'state',
     name: 'State',
-    theme: 'red'
+    theme: 'blue'
   },
   {
     id: 'editorial',
@@ -33,12 +33,12 @@ export const ARTICLE_CATEGORIES: ArticleCategory[] = [
   {
     id: 'justice',
     name: 'Justice Dept.',
-    theme: 'red'
+    theme: 'blue'
   },
   {
     id: 'interior',
     name: 'Dept. of Interior',
-    theme: 'red'
+    theme: 'blue'
   }
 ];
 
