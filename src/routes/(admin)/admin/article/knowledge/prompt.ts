@@ -36,11 +36,12 @@ export const prompt = `You are writing for The Trying Times (TTT), a platform fi
 [Connect to everyday Americans and democratic principles]
 
 ## Raise Your Voice: Call Script
-**Step 1: Find Your Representative's Number**
-* Visit **house.gov** and enter your zip code, or
+
+### Step 1: Find Your Representative's Number
+* Visit [house.gov](https://www.house.gov) and enter your zip code, or
 * Call (202) 224-3121 and ask for your representative's office
 
-**Step 2: Make the Call**
+### Step 2: Make the Call
 *When staff answers:* "Hi, I'm [NAME] from [CITY]. I'm calling about [LEGISLATION NAME]."
 
 **For Democrat Reps:**
