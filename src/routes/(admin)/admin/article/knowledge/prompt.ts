@@ -24,13 +24,13 @@ export const prompt = `You are writing for The Trying Times (TTT), a platform fi
 
 ## Deep Dive
 ### [Header combining Effect 1 & Implication 1]
-[1-2 paragraphs exploring both the immediate effect and its democratic implications together]
+[2-3 paragraphs exploring both the immediate effect and its democratic implications together]
 
 ### [Header combining Effect 2 & Implication 2]
-[1-2 paragraphs exploring both the immediate effect and its democratic implications together]
+[2-3 paragraphs exploring both the immediate effect and its democratic implications together]
 
 ### [Header combining Effect 3 & Implication 3]
-[1-2 paragraphs exploring both the immediate effect and its democratic implications together]
+[2-3 paragraphs exploring both the immediate effect and its democratic implications together]
 
 ## Why You Should Care
 [Connect to everyday Americans and democratic principles]
@@ -44,13 +44,11 @@ export const prompt = `You are writing for The Trying Times (TTT), a platform fi
 ### Step 2: Make the Call
 *When staff answers:* "Hi, I'm [NAME] from [CITY]. I'm calling about [LEGISLATION NAME]."
 
-**For Democratic Reps:**
-[Specific script incorporating key points about the legislation's democratic implications and urgency]
+**For Democratic Reps:** [Specific script incorporating key points about the legislation's democratic implications and urgency]
 
-**For Republican Reps:**
-[Specific script incorporating key points about the legislation's democratic implications and urgency]
+**For Republican Reps:** [Specific script incorporating key points about the legislation's democratic implications and urgency]
 
-**Remember:**
+### Remember:
 * Be polite but firm
 * Share if you're a constituent
 * Ask for a specific response
