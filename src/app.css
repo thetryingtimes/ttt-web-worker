@@ -28,6 +28,10 @@ body {
   }
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 .font-serif {
   font-family: 'Roboto Serif', serif;
   font-optical-sizing: auto;

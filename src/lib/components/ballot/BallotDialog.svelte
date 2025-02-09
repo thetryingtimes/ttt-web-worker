@@ -39,13 +39,16 @@
   let totalVotes = $derived(
     cached_article.votes.support + cached_article.votes.oppose
   );
-  let step: 'init' | 'cast' | 'confirmed' | 'blocked' = $state('init');
+  let step: 'init' | 'cast' | 'confirmed' | 'blocked' | 'denied' =
+    $state('init');
   let header = $derived(
     step === 'init' || step === 'cast'
       ? `Cast your vote`
       : step === 'confirmed'
         ? 'Vote confirmed!'
-        : `You can't vote.`
+        : step === 'blocked'
+          ? `You can't vote.`
+          : `Permission required`
   );
   let headerLabel = $derived(
     step === 'init' ? `(Step 1/2)` : step === 'cast' ? '(Step 2/2)' : ''
@@ -60,7 +63,9 @@
 </script>
 
 {#snippet initActions()}
-  <p class="w-full text-center text-sm">Only readers in the US may vote.</p>
+  <p class="w-full text-center text-sm">
+    Only US readers may vote. Only county & state are stored.
+  </p>
   <ActionButton
     label="Next: Confirm your Location"
     loading={locationLoading}
@@ -91,8 +96,10 @@
             step = 'blocked';
           }
         },
-        () => {
-          gotLocationError = true;
+        (reason: GeolocationPositionError) => {
+          if (reason.code === 1) step = 'denied';
+          else gotLocationError = true;
+
           locationLoading = false;
         }
       );
@@ -151,6 +158,16 @@
   />
 {/snippet}
 
+{#snippet deniedActions()}
+  <ActionButton
+    label="Done"
+    onclick={() => {
+      oncomplete(false);
+      dialog.close();
+    }}
+  />
+{/snippet}
+
 <Dialog
   bind:dialog
   header={`${header} <span class="text-white/50">${headerLabel}</span>`}
@@ -162,9 +179,11 @@
         ? confirmedActions
         : step === 'blocked'
           ? blockedActions
-          : undefined}
+          : step === 'denied'
+            ? deniedActions
+            : undefined}
 >
-  {#if step !== 'blocked'}
+  {#if step === 'init' || step === 'cast' || step === 'confirmed'}
     <div>
       <div class="flex gap-2 text-sm font-bold text-white/80 uppercase">
         <span
@@ -253,6 +272,36 @@
         <strong>You have been blocked.</strong> If we detect fraudulent activity
         on your account, you may be prevented from voting.
       </li>
+    </ul>
+  {/if}
+  {#if step === 'denied'}
+    <p>
+      <strong>You declined to share your location.</strong> We require your
+      location to restrict voting to US readers. Only your county & state are
+      stored. Refer to our
+      <a href="/privacy-policy" class="font-bold underline" target="_blank"
+        >privacy policy</a
+      > for details.
+    </p>
+    <p>
+      <strong>If you want to try again,</strong> here's what you'll need to do:
+    </p>
+    <ul class="list-disc pl-8">
+      <li>
+        On iOS? Learn how to <a
+          href="https://support.apple.com/guide/personal-safety/manage-location-services-settings-ips9bf20ad2f/web"
+          target="_blank"
+          class="font-bold underline">reset Location Services settings</a
+        >.
+      </li>
+      <li>
+        On Chrome or Android? Learn how to <a
+          href="https://support.google.com/chrome/answer/114662?hl=en&co=GENIE.Platform%3DAndroid"
+          target="_blank"
+          class="font-bold underline">reset site settings permissions</a
+        >.
+      </li>
+      <li>Otherwise, restart your browser and try again.</li>
     </ul>
   {/if}
 </Dialog>

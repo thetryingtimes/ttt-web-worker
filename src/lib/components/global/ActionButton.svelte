@@ -17,7 +17,7 @@
 <button
   {onclick}
   disabled={disabled || loading}
-  class="bg-ttt flex grow items-center justify-center gap-1 border-[5px] border-white px-4 py-4 text-xl font-bold text-white disabled:opacity-50"
+  class="bg-ttt flex grow items-center justify-center gap-1 border-[5px] border-white px-4 py-4 text-xl font-bold text-white active:bg-white/10 disabled:opacity-50"
 >
   {#if loading}
     <span
