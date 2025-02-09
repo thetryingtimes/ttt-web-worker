@@ -1,7 +1,7 @@
 <script lang="ts">
   const links = [
     {
-      href: 'mailto:thetryingtimes@proton.me?subject=Letter+to+the+editor',
+      href: 'mailto:thetryingtimes@proton.me?subject=Letter%20to%20the%20editor',
       label: 'thetryingtimes@proton.me',
       icon: 'mail_lock'
     },

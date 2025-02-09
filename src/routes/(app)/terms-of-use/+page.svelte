@@ -58,7 +58,7 @@
     By using TTT, you acknowledge that this is a community platform designed to
     enable democratic participation, not a scientific polling service. For
     questions contact <a
-      href="mailto:thetryingtimes@proton.me?subject=Terms+of+Use+question"
+      href="mailto:thetryingtimes@proton.me?subject=Terms%20of%20Use%20question"
       >thetryingtimes@proton.me</a
     >.
   </p>

@@ -63,7 +63,7 @@
     <li>You can request your voting history</li>
     <li>
       Contact us at <a
-        href="mailto:thetryingtimes@proton.me?subject=Privacy+Policy+inquiry"
+        href="mailto:thetryingtimes@proton.me?subject=Privacy%20Policy%20inquiry"
         >thetryingtimes@proton.me</a
       > for any privacy concerns.
     </li>

@@ -87,7 +87,7 @@
         <span class="underline">Mission</span>
       </a>
       <a
-        href="mailto:thetryingtimes@proton.me?subject=Letter+to+the+editor"
+        href="mailto:thetryingtimes@proton.me?subject=Letter%20to%20the%20editor"
         class="flex items-center gap-1 font-bold"
       >
         <span class="material-symbols-outlined" aria-hidden="true"
