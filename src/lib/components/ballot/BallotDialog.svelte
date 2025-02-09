@@ -210,7 +210,7 @@
     <BallotRadio bind:value={selected} {cached_article} />
   {/if}
   {#if step === 'init' && gotLocationError}
-    <p in:slide>
+    <p in:slide class="text-pretty">
       <strong>Trouble confirming your location?</strong> Make sure you're in the
       US and that your browser has location access. Only your county & state are
       stored. Refer to our
@@ -250,8 +250,10 @@
     </p>
   {/if}
   {#if step === 'blocked'}
-    <p>You have been prevented from voting for one of the following reasons:</p>
-    <ul class="list-decimal pl-8">
+    <p class="text-pretty">
+      You have been prevented from voting for one of the following reasons:
+    </p>
+    <ul class="list-decimal pl-8 text-pretty">
       <li>
         <strong>We couldn't confirm your location.</strong> Make sure your
         browser has location services enabled and
@@ -275,7 +277,7 @@
     </ul>
   {/if}
   {#if step === 'denied'}
-    <p>
+    <p class="text-pretty">
       <strong>You declined to share your location.</strong> We require your
       location to restrict voting to US readers. Only your county & state are
       stored. Refer to our
@@ -283,11 +285,11 @@
         >privacy policy</a
       > for details.
     </p>
-    <p>
+    <p class="text-pretty">
       <strong>If you want to try again,</strong> you'll need to reload the page or
       close the tab. In some cases you may need to reset location permissions:
     </p>
-    <ul class="list-disc pl-8">
+    <ul class="list-disc pl-8 text-pretty">
       <li>
         On iOS? Learn how to <a
           href="https://support.apple.com/guide/personal-safety/manage-location-services-settings-ips9bf20ad2f/web"
