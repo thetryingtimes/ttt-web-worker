@@ -284,7 +284,8 @@
       > for details.
     </p>
     <p>
-      <strong>If you want to try again,</strong> here's what you'll need to do:
+      <strong>If you want to try again,</strong> you'll need to reload the page or
+      close the tab. In some cases you may need to reset location permissions:
     </p>
     <ul class="list-disc pl-8">
       <li>
