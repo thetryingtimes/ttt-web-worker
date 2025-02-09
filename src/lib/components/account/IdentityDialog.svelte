@@ -175,77 +175,82 @@
     <p><strong>You have been blocked.</strong></p>
   {/if}
   {#if step === 'phone'}
-    <fieldset class="flex flex-col gap-2" out:slide>
-      <label for={phoneId} id={phoneLabelId} class="font-bold"
-        >Enter your phone number:</label
-      >
-      <div
-        class="has-invalid:ring-ttt-red flex items-center gap-1 border-2 border-white p-1 px-1 focus-within:ring-2 focus-within:ring-white has-invalid:ring-2"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">call</span>
-        <input
-          id={phoneId}
-          name="phone"
-          type="text"
-          aria-labelledby="{phoneLabelId} {phoneHintId}"
-          class="grow p-1 placeholder:text-white/80 focus:ring-0 focus:outline-0"
-          placeholder="(555) 555-5555"
-          autocomplete="tel"
-          inputmode="tel"
-          pattern="\+1(\d){'{10}'}"
-          bind:value={phone}
-          oninput={(e) => {
-            if (phone === '') return;
-            phone = `+1` + phone.replace(/^\+1/, '').replace(/([^\d])/g, '');
-            phoneValid = (e.target as HTMLInputElement).reportValidity();
-          }}
-        />
-      </div>
-      <span id={phoneHintId}>We will never sell your number or spam you.</span>
-    </fieldset>
+    <form>
+      <fieldset class="flex flex-col gap-2" out:slide>
+        <label for={phoneId} id={phoneLabelId} class="font-bold"
+          >Enter your phone number:</label
+        >
+        <div
+          class="has-invalid:ring-ttt-red flex items-center gap-1 border-2 border-white p-1 px-1 focus-within:ring-2 focus-within:ring-white has-invalid:ring-2"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">call</span>
+          <input
+            id={phoneId}
+            name="phone"
+            type="text"
+            aria-labelledby="{phoneLabelId} {phoneHintId}"
+            class="grow p-1 placeholder:text-white/80 focus:ring-0 focus:outline-0"
+            placeholder="(555) 555-5555"
+            autocomplete="tel"
+            inputmode="tel"
+            pattern="\+1(\d){'{10}'}"
+            bind:value={phone}
+            oninput={(e) => {
+              if (phone === '') return;
+              phone = `+1` + phone.replace(/^\+1/, '').replace(/([^\d])/g, '');
+              phoneValid = phone.length === 12; //(e.target as HTMLInputElement).reportValidity();
+            }}
+          />
+        </div>
+        <span id={phoneHintId}>We will never sell your number or spam you.</span
+        >
+      </fieldset>
+    </form>
     {#if phoneError}
       <p>Something went wrong, please try again.</p>
     {/if}
   {/if}
   {#if step === 'challenge'}
-    <fieldset class="flex flex-col gap-2" in:slide out:slide>
-      <label for={codeId} id={codeLabelId} class="font-bold"
-        >Enter the verification code we just texted you:</label
-      >
-      <div
-        class="has-invalid:ring-ttt-red flex items-center gap-1 border-2 border-white p-1 px-1 focus-within:ring-2 focus-within:ring-white has-invalid:ring-2"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">lock</span>
-        <input
-          id={codeId}
-          type="text"
-          aria-labelledby="{codeLabelId} {codeHintId}"
-          class="grow p-1 placeholder:text-white/80 focus:ring-0 focus:outline-0"
-          placeholder="123456"
-          autocomplete="one-time-code"
-          inputmode="numeric"
-          pattern="(\d){'{6}'}"
-          bind:value={code}
-          oninput={(e) => {
-            code = code.replace(/([^\d])/g, '');
-            codeValid = (e.target as HTMLInputElement).reportValidity();
-          }}
-        />
-      </div>
-      <span id={codeHintId}
-        >Didn't get a text? <a
-          href="#start-over"
-          class="underline"
-          onclick={(e) => {
-            e.preventDefault();
+    <form>
+      <fieldset class="flex flex-col gap-2" in:slide out:slide>
+        <label for={codeId} id={codeLabelId} class="font-bold"
+          >Enter the verification code we just texted you:</label
+        >
+        <div
+          class="has-invalid:ring-ttt-red flex items-center gap-1 border-2 border-white p-1 px-1 focus-within:ring-2 focus-within:ring-white has-invalid:ring-2"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+          <input
+            id={codeId}
+            type="text"
+            aria-labelledby="{codeLabelId} {codeHintId}"
+            class="grow p-1 placeholder:text-white/80 focus:ring-0 focus:outline-0"
+            placeholder="123456"
+            autocomplete="one-time-code"
+            inputmode="numeric"
+            pattern="(\d){'{6}'}"
+            bind:value={code}
+            oninput={(e) => {
+              code = code.replace(/([^\d])/g, '');
+              codeValid = (e.target as HTMLInputElement).reportValidity();
+            }}
+          />
+        </div>
+        <span id={codeHintId}
+          >Didn't get a text? <a
+            href="#start-over"
+            class="underline"
+            onclick={(e) => {
+              e.preventDefault();
 
-            phone = '';
-            code = '';
-            step = 'phone';
-          }}>Start over.</a
-        ></span
-      >
-    </fieldset>
+              phone = '';
+              code = '';
+              step = 'phone';
+            }}>Start over.</a
+          ></span
+        >
+      </fieldset>
+    </form>
     {#if codeError}
       <p>Something went wrong, please try again.</p>
     {/if}
