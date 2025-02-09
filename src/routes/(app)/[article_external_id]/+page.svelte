@@ -32,7 +32,7 @@
 
 {#each data.cached_article.article.content.sections as section}
   {#if section.type === 'section'}
-    <Article>
+    <Article inventory_eligible={true}>
       {@html new showdown.Converter().makeHtml(section.content)}
     </Article>
   {/if}

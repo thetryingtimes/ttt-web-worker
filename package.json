@@ -18,9 +18,10 @@
   },
   "watch": {
     "build": {
-      "extensions": "svelte,ts,html,css",
+      "extensions": "svelte,ts,html,css,js",
       "patterns": [
-        "src"
+        "src",
+        "static"
       ]
     }
   },
