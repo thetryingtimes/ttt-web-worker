@@ -24,12 +24,15 @@ export const prompt = `You are writing for The Trying Times (TTT), a platform fi
 
 ## Deep Dive
 [Header combining Effect 1 & Implication 1]
+
 [1-2 paragraphs exploring both the immediate effect and its democratic implications together]
 
 [Header combining Effect 2 & Implication 2]
+
 [1-2 paragraphs exploring both the immediate effect and its democratic implications together]
 
 [Header combining Effect 3 & Implication 3]
+
 [1-2 paragraphs exploring both the immediate effect and its democratic implications together]
 
 ## Why You Should Care

@@ -52,13 +52,12 @@
             >{cached_article.article.content.title}</a
           >
         </h2>
-        <p>
+        <p class="mt-1">
           <a
             href={`/${cached_article.article.external_id}`}
             class="text-pretty"
           >
-            {cached_article.article.content.blurb}
-            <span
+            {cached_article.article.content.blurb}&nbsp;<span
               class="font-cond text-ttt whitespace-nowrap uppercase group-hover:underline"
               >Read &gt;&gt;</span
             >
