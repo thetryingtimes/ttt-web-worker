@@ -30,13 +30,18 @@
   </h1>
 </div>
 
-{#each data.cached_article.article.content.sections as section}
-  {#if section.type === 'section'}
-    <Article inventory_eligible={true}>
-      {@html new showdown.Converter().makeHtml(section.content)}
-    </Article>
-  {/if}
-{/each}
+<div class="flex flex-col gap-8">
+  {#each data.cached_article.article.content.sections as section, index (section.content)}
+    {#if section.type === 'section'}
+      <Article>
+        {@html new showdown.Converter().makeHtml(section.content)}
+      </Article>
+    {/if}
+    {#if index % 3 === 0}
+      <div class="inventory-container"></div>
+    {/if}
+  {/each}
+</div>
 
 <div class="border-t-ttt sticky bottom-0 w-screen border-t bg-[#E5F3FF]">
   <div class="m-auto max-w-prose px-4 py-4">

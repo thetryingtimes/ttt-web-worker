@@ -3,18 +3,17 @@
 
   const inventory = [
     {
-      target: 'https://buymeacoffee.com/thetryingtimes',
+      target: 'https://buymeacoffee.com/the.trying.times',
       asset: `/bmac-v1.jpg`
     },
-    { target: 'https://thetryingtimes.com', asset: `/concede-v1.jpg` },
+    { target: 'https://thetryingtimes.com', asset: `/concede-v2.jpg` },
     { target: 'https://thetryingtimes.com', asset: `/independent-v1.jpg` },
     {
       target: 'https://the-trying-times.beehiiv.com/subscribe',
-      asset: `/newsletter-v1.jpg`
+      asset: `/newsletter-v2.jpg`
     },
     {
-      target:
-        'https://www.tiktok.com/@mikeyjoe12345/video/7468371632579693870?is_from_webapp=1&sender_device=pc&web_id=7468828952762631723',
+      target: 'https://www.tiktok.com/@mikeyjoe12345/video/7468371632579693870',
       asset: `/social-proof-v1.jpg`
     }
   ];
@@ -24,13 +23,13 @@
   }
 
   function populate(e) {
-    const els = document.querySelectorAll('[data-inventory-after]');
+    const els = document.querySelectorAll('.inventory-container');
     let ad_index = 0;
     let ads = inventory.sort(() => Math.random() - 0.5);
 
     els.forEach((el) => {
       if (!inventory[ad_index]) ad_index = 0;
-      el.insertAdjacentHTML('afterend', template(ads[ad_index]));
+      el.innerHTML = template(ads[ad_index]);
       ad_index++;
       el.addEventListener('load_error', () => {
         el.nextSibling.remove();
