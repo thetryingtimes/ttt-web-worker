@@ -38,6 +38,7 @@
       voting_enabled: false,
 
       knowledge: '',
+      user_message: '',
 
       content: {
         title: '',
@@ -50,7 +51,6 @@
   let knowledgeLoading = $state(false);
   let dragging = $state(false);
   let droppedFiles = $state<File[]>([]);
-  let user_message = $state('');
 
   const handleDrag = (e: DragEvent) => {
     e.preventDefault();
@@ -124,7 +124,7 @@
     <div>
       <AdminTextarea
         label="Additional instructions"
-        bind:value={user_message}
+        bind:value={draft.user_message}
       />
     </div>
     {#if draft.knowledge}
@@ -150,7 +150,7 @@
             KnowledgeResponseType
           >(
             KnowledgeRequestEndpoint,
-            { files, user_message },
+            { files, user_message: draft.user_message },
             KnowledgeResponseParser
           );
 

@@ -19,6 +19,7 @@ export type Database = {
           knowledge: string
           published: boolean
           published_at: string
+          user_message: string | null
           voting_enabled: boolean
         }
         Insert: {
@@ -30,6 +31,7 @@ export type Database = {
           knowledge: string
           published: boolean
           published_at: string
+          user_message?: string | null
           voting_enabled: boolean
         }
         Update: {
@@ -41,6 +43,7 @@ export type Database = {
           knowledge?: string
           published?: boolean
           published_at?: string
+          user_message?: string | null
           voting_enabled?: boolean
         }
         Relationships: []
@@ -49,7 +52,7 @@ export type Database = {
         Row: {
           article_external_id: string
           ballot_id: string
-          county: string
+          county: string | null
           created_at: string
           id: number
           oppose: boolean | null
@@ -60,7 +63,7 @@ export type Database = {
         Insert: {
           article_external_id: string
           ballot_id: string
-          county: string
+          county?: string | null
           created_at?: string
           id?: number
           oppose?: boolean | null
@@ -71,7 +74,7 @@ export type Database = {
         Update: {
           article_external_id?: string
           ballot_id?: string
-          county?: string
+          county?: string | null
           created_at?: string
           id?: number
           oppose?: boolean | null

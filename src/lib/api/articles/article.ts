@@ -18,6 +18,7 @@ export const ArticleDraftParser = z.object({
   voting_enabled: z.boolean(),
 
   knowledge: z.string(),
+  user_message: z.string().nullable(),
 
   content: z.object({
     title: z.string(),
