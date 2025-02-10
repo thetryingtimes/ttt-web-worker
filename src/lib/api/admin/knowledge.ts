@@ -2,7 +2,8 @@ import { z } from 'zod';
 
 export const KnowledgeRequestEndpoint = `/admin/article/knowledge`;
 export const KnowledgeRequestParser = z.object({
-  files: z.array(z.string())
+  files: z.array(z.string()),
+  user_message: z.string()
 });
 export type KnowledgeRequestProps = z.infer<typeof KnowledgeRequestParser>;
 

@@ -50,6 +50,7 @@
   let knowledgeLoading = $state(false);
   let dragging = $state(false);
   let droppedFiles = $state<File[]>([]);
+  let user_message = $state('');
 
   const handleDrag = (e: DragEvent) => {
     e.preventDefault();
@@ -120,9 +121,18 @@
         />
       {/each}
     </div>
+    <div>
+      <AdminTextarea
+        label="Additional instructions"
+        bind:value={user_message}
+      />
+    </div>
     {#if draft.knowledge}
       <div class="prose">
-        <pre class="whitespace-pre-wrap">{draft.knowledge}</pre>
+        <pre
+          class="whitespace-pre-wrap"
+          bind:innerText={draft.knowledge}
+          contenteditable></pre>
       </div>
     {/if}
     <div>
@@ -138,7 +148,11 @@
           const res = await ApiClient.post<
             KnowledgeRequestProps,
             KnowledgeResponseType
-          >(KnowledgeRequestEndpoint, { files }, KnowledgeResponseParser);
+          >(
+            KnowledgeRequestEndpoint,
+            { files, user_message },
+            KnowledgeResponseParser
+          );
 
           knowledgeLoading = false;
 

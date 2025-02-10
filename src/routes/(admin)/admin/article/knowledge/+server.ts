@@ -47,6 +47,17 @@ export const POST: RequestHandler = async ({ platform, request }) => {
     ]
   });
 
+  if (parsed.data.user_message !== '')
+    messages.push({
+      role: 'user',
+      content: [
+        {
+          type: 'text',
+          text: `Additional instructions:\n${parsed.data.user_message}`
+        }
+      ]
+    });
+
   const message = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-latest',
     max_tokens: 2056,
