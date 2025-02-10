@@ -80,6 +80,14 @@
         <span class="mr-1">Research</span>
         <Pill text="Coming soon" />
       </p>
+      <a
+        href="https://the-trying-times.beehiiv.com/subscribe"
+        class="flex items-center gap-1 font-bold"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">loyalty</span
+        >
+        <span class="underline">Newsletter</span>
+      </a>
       <a href="/mission-statement" class="flex items-center gap-1 font-bold">
         <span class="material-symbols-outlined" aria-hidden="true"
           >receipt_long</span

@@ -39,4 +39,5 @@
   }
 
   window.addEventListener('popstate', populate);
+  window.addEventListener('load', populate);
 })(window);
