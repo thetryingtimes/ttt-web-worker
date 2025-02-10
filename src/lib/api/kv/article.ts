@@ -4,7 +4,7 @@ import { ArticleSectionParser } from '../articles/article';
 export const CachedArticleParser = z.object({
   article: z.object({
     external_id: z.string(),
-    published_at: z.string().date(),
+    published_at: z.string(),
     published: z.boolean(),
     category_id: z.string().nullable(),
     voting_enabled: z.boolean(),
