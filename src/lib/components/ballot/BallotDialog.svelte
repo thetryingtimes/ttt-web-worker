@@ -291,10 +291,13 @@
     </p>
     <ul class="list-disc pl-8 text-pretty">
       <li>
-        On iOS? Learn how to <a
-          href="https://support.apple.com/guide/personal-safety/manage-location-services-settings-ips9bf20ad2f/web"
+        On iOS? Use the <pre class="inline-block bg-white/5 px-1"><small
+            >A</small
+          >A</pre>
+        menu in Safari to{' '}<a
+          href="https://www.macrumors.com/how-to/access-website-settings-in-safari/"
           target="_blank"
-          class="font-bold underline">reset Location Services settings</a
+          class="font-bold underline">reset Website location permissions</a
         >.
       </li>
       <li>
