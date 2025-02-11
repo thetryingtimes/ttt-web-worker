@@ -23,6 +23,10 @@
   import { invalidateAll } from '$app/navigation';
   import { plural } from '$lib/utils/text';
   import { getFormattedDate } from '$lib/utils/date';
+  import {
+    setUserConfirmedProps,
+    getUserConfirmedProps
+  } from '$lib/api/geo/confirmed.svelte';
 
   let {
     dialog = $bindable(),
@@ -56,7 +60,9 @@
 
   let locationLoading = $state(false);
   let gotLocationError = $state(false);
-  let ballotLocation: VoteRequestProps | undefined = $state();
+  let ballotLocation: VoteRequestProps | undefined = $derived(
+    getUserConfirmedProps()
+  );
   // svelte-ignore non_reactive_update
   let finalVote: string;
   let ballotId: string | undefined = $state();
@@ -71,38 +77,42 @@
     loading={locationLoading}
     disabled={locationLoading}
     onclick={() => {
-      locationLoading = true;
+      if (ballotLocation) {
+        step = 'cast';
+      } else {
+        locationLoading = true;
 
-      navigator.geolocation.getCurrentPosition(
-        async (loc) => {
-          const res = await ApiClient.post<GeoRequestProps, GeoResponse>(
-            GeoRequestEndpoint,
-            {
-              lat: loc.coords.latitude,
-              lng: loc.coords.longitude
-            },
-            GeoResponseParser
-          );
+        navigator.geolocation.getCurrentPosition(
+          async (loc) => {
+            const res = await ApiClient.post<GeoRequestProps, GeoResponse>(
+              GeoRequestEndpoint,
+              {
+                lat: loc.coords.latitude,
+                lng: loc.coords.longitude
+              },
+              GeoResponseParser
+            );
 
-          if (res && res.success) {
-            ballotLocation = res.props;
-            gotLocationError = false;
+            if (res && res.success) {
+              setUserConfirmedProps(res.props);
+              gotLocationError = false;
+              locationLoading = false;
+              step = 'cast';
+            } else {
+              setUserConfirmedProps(undefined);
+              gotLocationError = true;
+              locationLoading = false;
+              step = 'blocked';
+            }
+          },
+          (reason: GeolocationPositionError) => {
+            if (reason.code === 1) step = 'denied';
+            else gotLocationError = true;
+
             locationLoading = false;
-            step = 'cast';
-          } else {
-            gotLocationError = true;
-            locationLoading = false;
-            ballotLocation = undefined;
-            step = 'blocked';
           }
-        },
-        (reason: GeolocationPositionError) => {
-          if (reason.code === 1) step = 'denied';
-          else gotLocationError = true;
-
-          locationLoading = false;
-        }
-      );
+        );
+      }
     }}
   />
 {/snippet}
