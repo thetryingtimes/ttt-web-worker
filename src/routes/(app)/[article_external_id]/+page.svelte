@@ -23,11 +23,14 @@
 
 <Impact />
 
-<div class="m-auto flex max-w-prose flex-col px-4 pt-8">
+<div class="m-auto mb-8 flex max-w-prose flex-col px-4 pt-8">
   <ArticleHeader bind:cached_article={data.cached_article} />
-  <h1 class="mt-2 font-serif text-2xl md:text-3xl">
+  <h1 class="my-2 font-serif text-2xl text-pretty md:text-3xl">
     {data.cached_article.article.content.title}
   </h1>
+  <p class="font-serif text-lg text-pretty md:text-xl">
+    {data.cached_article.article.content.blurb}
+  </p>
 </div>
 
 <div class="flex flex-col gap-8">

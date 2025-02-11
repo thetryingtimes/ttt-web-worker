@@ -18,7 +18,7 @@
 
 {#if data.success && data.list && data.list.length}
   <h1 class="sr-only">Articles:</h1>
-  <div class="m-auto flex w-full max-w-prose flex-col gap-12 py-8">
+  <div class="m-auto flex w-full max-w-prose flex-col gap-16 py-8">
     {#each external_ids as item, index (item.external_id)}
       <ArticlePreview external_id={item.external_id} />
       {#if index % 3 === 0}
