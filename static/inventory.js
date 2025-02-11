@@ -4,13 +4,19 @@
   const inventory = [
     {
       target: 'https://buymeacoffee.com/the.trying.times',
-      asset: `/bmac-v1.jpg`
+      asset: `/bmac-v2.jpg`
     },
-    { target: 'https://thetryingtimes.com', asset: `/concede-v2.jpg` },
-    { target: 'https://thetryingtimes.com', asset: `/independent-v1.jpg` },
+    {
+      target: 'https://www.youtube.com/watch?v=9tocssf3w80',
+      asset: `/concede-v3.jpg`
+    },
+    {
+      target: 'https://thetryingtimes.com/mission-statement',
+      asset: `/independent-v1.jpg`
+    },
     {
       target: 'https://the-trying-times.beehiiv.com/subscribe',
-      asset: `/newsletter-v2.jpg`
+      asset: `/newsletter-v3.jpg`
     },
     {
       target: 'https://www.tiktok.com/@mikeyjoe12345/video/7468371632579693870',
