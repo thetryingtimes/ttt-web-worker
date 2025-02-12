@@ -20,13 +20,14 @@ export class SupabaseClient {
     this.kv = new KVClient(platform);
   }
 
-  async publicGetHomepageExternalIds(after_external_id?: string) {
+  async publicGetHomepageExternalIds(offset: number = 0) {
     return this.client
       .from('articles')
       .select('external_id')
       .eq('published', true)
       .order('published_at', { ascending: false })
-      .order('id', { ascending: false });
+      .order('id', { ascending: false })
+      .range(offset, offset + 9);
   }
 
   async userGetBallots(stytch_user_id: string): Promise<UserBallot[]> {

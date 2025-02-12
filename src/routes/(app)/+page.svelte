@@ -1,11 +1,12 @@
 <script lang="ts">
   import ArticlePreview from '$lib/components/articles/ArticlePreview.svelte';
+  import BubbleLink from '$lib/components/global/BubbleLink.svelte';
   import Impact from '$lib/components/global/Impact.svelte';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
 
-  let external_ids: { external_id: string }[] = $state(data.list || []);
+  let external_ids: { external_id: string }[] = $derived(data.list || []);
 </script>
 
 <svelte:head>
@@ -21,10 +22,15 @@
   <div class="m-auto flex w-full max-w-prose flex-col gap-16 py-8">
     {#each external_ids as item, index (item.external_id)}
       <ArticlePreview external_id={item.external_id} />
-      {#if index % 3 === 0}
+      {#if index % 3 === 0 && index < external_ids.length - 1}
         <div class="inventory-container"></div>
       {/if}
     {/each}
+    {#if data.nextOffset}
+      <div class="-mt-6 flex justify-center">
+        <BubbleLink href="/?offset={data.nextOffset}" label="Next page" />
+      </div>
+    {/if}
   </div>
 {:else}
   <h1
