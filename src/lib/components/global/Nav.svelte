@@ -61,48 +61,96 @@
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
       id="main-menu"
-      class="m-auto flex w-full max-w-prose flex-col gap-2 p-4"
+      class="m-auto flex w-full max-w-prose flex-col gap-2 p-4 font-bold"
       onclick={() => {
         currentMenu = '';
       }}
       in:slide
       out:slide
     >
-      <h2 class="text-xl font-bold">Main menu</h2>
-      <a href="/" class="flex items-center gap-1 font-bold">
-        <span class="material-symbols-outlined" aria-hidden="true">home</span>
-        <span class="underline">Home</span>
-      </a>
-      <p class="flex items-center gap-1 font-bold">
-        <span class="material-symbols-outlined" aria-hidden="true"
-          >query_stats</span
-        >
-        <span class="mr-1">Research</span>
-        <Pill text="Coming soon" />
-      </p>
-      <a
-        href="https://the-trying-times.beehiiv.com/subscribe"
-        class="flex items-center gap-1 font-bold"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">loyalty</span
-        >
-        <span class="underline">Newsletter</span>
-      </a>
-      <a href="/mission-statement" class="flex items-center gap-1 font-bold">
-        <span class="material-symbols-outlined" aria-hidden="true"
-          >receipt_long</span
-        >
-        <span class="underline">Mission</span>
-      </a>
-      <a
-        href="mailto:thetryingtimes@proton.me?subject=Letter%20to%20the%20editor"
-        class="flex items-center gap-1 font-bold"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true"
-          >mail_lock</span
-        >
-        <span class="underline">Contact</span>
-      </a>
+      <div class="flex justify-around gap-8 md:justify-between">
+        <div class="flex grow flex-col gap-2">
+          <h2 class="text-xl">Menu</h2>
+          <a href="/" class="flex items-center gap-1">
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >home</span
+            >
+            <span class="underline">Home</span>
+          </a>
+          <p class="flex h-6 items-center gap-1">
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >query_stats</span
+            >
+            <span class="mr-1">Research</span>
+            <Pill text="Coming soon" />
+          </p>
+          <a
+            href="https://the-trying-times.beehiiv.com/subscribe"
+            class="flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >loyalty</span
+            >
+            <span class="underline">Newsletter</span>
+          </a>
+          <a href="/mission-statement" class="flex items-center gap-1">
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >receipt_long</span
+            >
+            <span class="underline">Mission</span>
+          </a>
+        </div>
+        <div class="flex grow flex-col gap-2 md:grow-0">
+          <h2 class="text-xl">Connect</h2>
+          <a
+            href="https://reddit.com/r/thetryingtimes"
+            class="flex items-center gap-1"
+          >
+            <img
+              src="/icon-reddit.png"
+              alt=""
+              aria-hidden="true"
+              class="h-6 w-6"
+            />
+            <span class="underline">Reddit</span>
+          </a>
+          <a
+            href="https://bsky.app/profile/thetryingtimes.com"
+            class="flex items-center gap-1"
+          >
+            <img
+              src="/icon-bsky.png"
+              alt=""
+              aria-hidden="true"
+              class="h-6 w-6"
+            />
+            <span class="underline">Bluesky</span>
+          </a>
+          <a
+            href="https://www.tiktok.com/@mikeyjoe12345"
+            class="flex items-center gap-1"
+          >
+            <img
+              src="/icon-tiktok.png"
+              alt=""
+              aria-hidden="true"
+              class="h-6 w-6"
+            />
+            <span class="underline">TikTok</span>
+          </a>
+          <a
+            href="mailto:thetryingtimes@proton.me?subject=Letter%20to%20the%20editor"
+            class="flex items-center gap-1"
+          >
+            <span class="flex h-6 w-6 items-center justify-center">
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >mail_lock</span
+              >
+            </span>
+            <span class="underline">Email</span>
+          </a>
+        </div>
+      </div>
     </div>
   {/if}
   {#if currentMenu === 'account'}
@@ -165,6 +213,6 @@
   }
 
   div[id] .material-symbols-outlined {
-    font-size: 18px;
+    font-size: 20px;
   }
 </style>
