@@ -15,6 +15,11 @@ export const CachedArticleParser = z.object({
       sections: z.array(ArticleSectionParser)
     })
   }),
+  external_urls: z
+    .object({
+      reddit: z.string().optional()
+    })
+    .optional(),
   votes: z.object({
     support: z.number(),
     oppose: z.number(),

@@ -45,7 +45,7 @@ export const GET: RequestHandler = async ({ platform }) => {
   return new Response(doc, {
     headers: {
       'Content-Type': 'application/xml',
-      'Cache-Control': 'public, maxage=3600'
+      'Cache-Control': 'public, maxage=900'
     }
   });
 };

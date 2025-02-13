@@ -21,7 +21,7 @@
   });
 </script>
 
-<nav class="flex items-center justify-between md:justify-start md:gap-4">
+<nav class="flex items-center gap-4">
   {#if cached_article.article.voting_enabled}
     {#if user_ballot}
       {#if user_ballot.support}
@@ -94,11 +94,32 @@
     <span class="material-symbols-outlined filled" aria-hidden="true"
       >ios_share</span
     >
-    <span class="group-hover:underline">SHARE</span>
+    <span
+      class="group-hover:underline md:inline-block"
+      class:hidden={cached_article.article.voting_enabled}>SHARE</span
+    >
     <span class="text-gray-500"
       >{millify(cached_article.votes.shares || 0)}</span
     >
   </button>
+  {#if cached_article.external_urls?.reddit}
+    <a
+      href={cached_article.external_urls.reddit}
+      target="_blank"
+      class="font-cond group flex h-[24px] items-center gap-1 uppercase"
+    >
+      <img
+        src="/icon-reddit-discuss.svg"
+        width="32"
+        height="32"
+        alt="Discuss on Reddit"
+      />
+      <span
+        class="group-hover:underline md:inline-block"
+        class:hidden={cached_article.article.voting_enabled}>Discuss</span
+      >
+    </a>
+  {/if}
 </nav>
 
 <ArticleBallotCoordinator bind:this={ballotCoordinator} bind:cached_article />

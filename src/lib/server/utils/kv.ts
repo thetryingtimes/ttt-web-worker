@@ -28,9 +28,13 @@ export class KVClient {
       };
     }
 
+    await this.put(toCache);
+  }
+
+  async put(article: CachedArticle) {
     await this.platform.env.ARTICLES.put(
-      `article:${toCache.article.external_id}`,
-      JSON.stringify(toCache)
+      `article:${article.article.external_id}`,
+      JSON.stringify(article)
     );
   }
 
@@ -39,5 +43,16 @@ export class KVClient {
       `article:${external_id}`,
       'json'
     );
+  }
+
+  async putRedditUrl(external_id: string, reddit_url: string) {
+    const existing = await this.getArticleByExternalId(external_id);
+
+    if (existing) {
+      if (!existing.external_urls) existing.external_urls = {};
+      existing.external_urls.reddit = reddit_url;
+
+      await this.put(existing);
+    }
   }
 }

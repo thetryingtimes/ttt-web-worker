@@ -22,6 +22,7 @@ declare global {
         STYTCH_SECRET: string;
         SUPABASE_PROJECT_URL: string;
         SUPABASE_PUBLIC_ANON_KEY: string;
+        ZAP_SECRET: string;
 
         ARTICLES: KVNamespace;
         TABULATOR: Queue<VoteMessage>;
