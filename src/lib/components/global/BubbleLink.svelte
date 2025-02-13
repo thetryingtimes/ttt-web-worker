@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { bubbleClass } from './bubbleClass';
+
   let {
     href,
     label,
@@ -7,10 +9,6 @@
     $props();
 </script>
 
-<a
-  {href}
-  {onclick}
-  class="border-ttt hover:bg-ttt/10 font-cond hover:outline-ttt max-w-fit rounded-3xl border px-4 py-2 uppercase hover:outline"
->
+<a {href} {onclick} class={bubbleClass}>
   {label}
 </a>

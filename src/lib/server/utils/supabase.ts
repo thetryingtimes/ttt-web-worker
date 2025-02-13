@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { type Database } from './supabase.d';
 import { KVClient } from './kv';
 import type { Ballot, UserBallot } from '$lib/api/ballots/ballot';
+import type { HomeFilterKey } from '$lib/api/home/filters';
 
 export class SupabaseClient {
   private client;
@@ -17,14 +18,33 @@ export class SupabaseClient {
     this.kv = new KVClient(platform);
   }
 
-  async publicGetHomepageExternalIds(offset: number = 0) {
-    return this.client
+  async publicGetHomepageExternalIds(
+    filter: HomeFilterKey = 'popular',
+    offset: number = 0,
+    category_id?: string
+  ) {
+    let query = this.client
       .from('articles')
       .select('external_id')
-      .eq('published', true)
-      .order('published_at', { ascending: false })
-      .order('id', { ascending: false })
-      .range(offset, offset + 9);
+      .eq('published', true);
+
+    if (filter === 'new') {
+      query = query
+        .order('id', { ascending: false })
+        .order('published_at', { ascending: false });
+    }
+
+    if (filter === 'popular') {
+      query = query.order('popularity', { ascending: false });
+    }
+
+    if (category_id) {
+      query = query.eq('category_id', category_id);
+    }
+
+    query = query.range(offset, offset + 9);
+
+    return query;
   }
 
   async userGetBallots(stytch_user_id: string): Promise<UserBallot[]> {
