@@ -77,13 +77,6 @@
             >
             <span class="underline">Home</span>
           </a>
-          <p class="flex h-6 items-center gap-1">
-            <span class="material-symbols-outlined" aria-hidden="true"
-              >query_stats</span
-            >
-            <span class="mr-1">Research</span>
-            <Pill text="Coming soon" />
-          </p>
           <a
             href="https://the-trying-times.beehiiv.com/subscribe"
             class="flex items-center gap-1"
@@ -99,6 +92,13 @@
             >
             <span class="underline">Mission</span>
           </a>
+          <p class="flex h-6 items-center gap-1">
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >query_stats</span
+            >
+            <span class="mr-1">Research</span>
+            <Pill text="Coming soon" />
+          </p>
         </div>
         <div class="flex grow flex-col gap-2 md:grow-0">
           <h2 class="text-xl">Connect</h2>

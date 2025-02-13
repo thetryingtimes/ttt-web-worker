@@ -1,11 +1,14 @@
 (function (window) {
   const root = `https://assets.thetryingtimes.com`;
 
-  const inventory = [
+  const guaranteed = [
     {
       target: 'https://buymeacoffee.com/the.trying.times',
       asset: `/bmac-v2.jpg`
-    },
+    }
+  ];
+
+  const inventory = [
     {
       target: 'https://www.youtube.com/watch?v=9tocssf3w80',
       asset: `/concede-v3.jpg`
@@ -32,6 +35,7 @@
     const els = document.querySelectorAll('.inventory-container');
     let ad_index = 0;
     let ads = inventory.sort(() => Math.random() - 0.5);
+    ads.unshift(guaranteed);
 
     els.forEach((el) => {
       if (!inventory[ad_index]) ad_index = 0;

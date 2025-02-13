@@ -11,7 +11,7 @@ export const GET: RequestHandler = async ({ platform }) => {
 
   const doc = `<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>The Trying Times</title>
+  <title>The Trying Times — Articles</title>
   <subtitle>News you can act on</subtitle>
   <link rel="self" type="application/atom+xml" href="https://thetryingtimes.com/atom.xml"/>
   <link rel="alternate" type="text/html" href="https://thetryingtimes.com"/>
@@ -27,7 +27,7 @@ export const GET: RequestHandler = async ({ platform }) => {
       (entry) => `<entry>
     <title>${entry.content.title}</title>
     <link rel="alternate" type="text/html" href="https://thetryingtimes.com/${entry.external_id}"/>
-        <link rel="related" type="text/html" href="https://thetryingtimes.com/${entry.external_id}"/>
+    <link rel="related" type="text/html" href="https://thetryingtimes.com/${entry.external_id}"/>
     <id>https://thetryingtimes.com/${entry.external_id}</id>
     <updated>${entry.created_at}</updated>
     <author>
@@ -36,7 +36,8 @@ export const GET: RequestHandler = async ({ platform }) => {
     <category term="${entry.category_id}"/>
     <summary type="text"><![CDATA[${entry.content.blurb}]]></summary>
     <content type="html" xml:base="https://thetryingtimes.com" xml:lang="en"><![CDATA[${new showdown.Converter().makeHtml(entry.content.sections.filter((s) => s.type === 'section')[0].content)}]]></content>
-  </entry>`
+  </entry>
+  `
     )
     .join('')}
 </feed>`;
