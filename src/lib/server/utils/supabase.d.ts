@@ -17,6 +17,7 @@ export type Database = {
           external_id: string
           id: number
           knowledge: string
+          popularity: number | null
           published: boolean
           published_at: string
           user_message: string | null
@@ -29,6 +30,7 @@ export type Database = {
           external_id: string
           id?: number
           knowledge: string
+          popularity?: number | null
           published: boolean
           published_at: string
           user_message?: string | null
@@ -41,6 +43,7 @@ export type Database = {
           external_id?: string
           id?: number
           knowledge?: string
+          popularity?: number | null
           published?: boolean
           published_at?: string
           user_message?: string | null
