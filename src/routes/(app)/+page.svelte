@@ -38,7 +38,7 @@
       options={HOME_FILTERS}
       onchange={async (newFilter) => {
         const params = page.url.searchParams;
-        params.set('filter', newFilter);
+        params.set('sort', newFilter);
 
         await goto(`/?${params.toString()}`, { invalidateAll: true });
       }}

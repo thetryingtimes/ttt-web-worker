@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ platform, url, cookies }) => {
 
   const offsetParam = url.searchParams.get('offset');
   const filterSearchParam: HomeFilter | undefined = HOME_FILTERS.filter(
-    (f) => f.key === url.searchParams.get('filter')
+    (f) => f.key === url.searchParams.get('sort')
   )[0];
   const filterCookie = cookies.get('filter');
   const categorySearchParam: string | undefined =
