@@ -5,13 +5,10 @@ import { KVClient } from './kv';
 import type { Ballot, UserBallot } from '$lib/api/ballots/ballot';
 
 export class SupabaseClient {
-  private platform;
   private client;
   private kv;
 
   constructor(platform: App.Platform) {
-    this.platform = platform;
-
     this.client = createClient<Database>(
       platform.env.SUPABASE_PROJECT_URL,
       platform.env.SUPABASE_PUBLIC_ANON_KEY
@@ -83,5 +80,16 @@ export class SupabaseClient {
 
   async adminGetArticleByExternalId(external_id: string) {
     return this.client.from('articles').select().eq('external_id', external_id);
+  }
+
+  async rssListArticles() {
+    const { data } = await this.client
+      .from('articles')
+      .select()
+      .eq('published', true)
+      .order('published_at', { ascending: false })
+      .order('id', { ascending: false });
+
+    return data as unknown as (ArticleDraft & { created_at: string })[];
   }
 }
