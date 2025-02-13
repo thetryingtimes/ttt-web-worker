@@ -8,6 +8,7 @@ export const CachedArticleParser = z.object({
     published: z.boolean(),
     category_id: z.string().nullable(),
     voting_enabled: z.boolean(),
+    pinned: z.boolean().optional(),
 
     content: z.object({
       title: z.string(),

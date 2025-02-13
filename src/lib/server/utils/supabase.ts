@@ -26,6 +26,7 @@ export class SupabaseClient {
     let query = this.client
       .from('articles')
       .select('external_id')
+      .not('pinned', 'is', true)
       .eq('published', true);
 
     if (filter === 'new') {
@@ -45,6 +46,16 @@ export class SupabaseClient {
     query = query.range(offset, offset + 9);
 
     return query;
+  }
+
+  async publicGetHomepagePinnedIds() {
+    return this.client
+      .from('articles')
+      .select('external_id')
+      .eq('pinned', true)
+      .eq('published', true)
+      .order('id', { ascending: false })
+      .order('published_at', { ascending: false });
   }
 
   async userGetBallots(stytch_user_id: string): Promise<UserBallot[]> {

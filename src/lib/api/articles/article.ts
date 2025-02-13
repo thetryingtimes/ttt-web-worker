@@ -19,6 +19,7 @@ export const ArticleDraftParser = z.object({
 
   knowledge: z.string(),
   user_message: z.string().nullable(),
+  pinned: z.boolean().optional(),
 
   content: z.object({
     title: z.string(),

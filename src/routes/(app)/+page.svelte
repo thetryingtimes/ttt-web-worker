@@ -17,6 +17,7 @@
     nextOffset: data.nextOffset
   });
   let external_ids = $derived(data.list || []);
+  let pinned_ids = $derived(data.pinned || []);
 </script>
 
 <svelte:head>
@@ -29,6 +30,13 @@
 
 {#if success && external_ids.length && filteredBy}
   <h1 class="sr-only">Articles:</h1>
+  {#if pinned_ids.length}
+    <div class="m-auto flex w-full max-w-prose flex-col gap-16 pt-4">
+      {#each pinned_ids as item (item.external_id)}
+        <ArticlePreview external_id={item.external_id} pinned />
+      {/each}
+    </div>
+  {/if}
   <div class="m-auto flex max-w-prose items-center gap-4 px-4 py-8">
     <span class="sr-only" id="filter-by">Search/filter articles by</span>
     <BubbleSelect

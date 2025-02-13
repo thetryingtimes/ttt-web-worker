@@ -59,10 +59,13 @@ export const load: PageServerLoad = async ({ platform, url, cookies }) => {
     categorySearchParam
   );
 
+  const pinned = await supa.publicGetHomepagePinnedIds();
+
   if (data) {
     return {
       success: true,
       list: data,
+      pinned: pinned.data,
       filteredBy: appliedFilterKey,
       nextOffset: offsetParam ? Number(offsetParam) + 10 : 10
     };

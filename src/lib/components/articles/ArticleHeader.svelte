@@ -6,8 +6,10 @@
   import { millify } from 'millify';
   import Pill from '$lib/components/global/Pill.svelte';
 
-  let { cached_article = $bindable() }: { cached_article: CachedArticle } =
-    $props();
+  let {
+    cached_article = $bindable(),
+    pinned = false
+  }: { cached_article: CachedArticle; pinned?: boolean } = $props();
 
   let article_category = $derived(
     getCategoryById(cached_article.article.category_id)
@@ -18,12 +20,22 @@
   {#if article_category}
     <Pill text={article_category.name} theme={article_category.theme} />
   {/if}
-  <p class="font-cond text-sm leading-1 text-gray-500 uppercase">
-    {getFormattedDate(
-      new Date(Date.parse(cached_article.article.published_at + 'T00:00:00')),
-      'medium'
-    )}
-  </p>
+  {#if pinned}
+    <div class="flex items-center">
+      <span class="material-symbols-outlined is-pinned" aria-hidden="true"
+        >keep</span
+      >
+      <span class="font-cond text-sm uppercase">Pinned</span>
+    </div>
+  {/if}
+  {#if !pinned}
+    <p class="font-cond text-sm leading-1 text-gray-500 uppercase">
+      {getFormattedDate(
+        new Date(Date.parse(cached_article.article.published_at + 'T00:00:00')),
+        'medium'
+      )}
+    </p>
+  {/if}
   {#if cached_article.article.voting_enabled}
     <p class="font-cond text-sm leading-1 text-gray-500 uppercase">•</p>
     <p class="font-cond text-sm leading-1 text-gray-500 uppercase">
@@ -37,3 +49,9 @@
     </p>
   {/if}
 </header>
+
+<style>
+  .is-pinned {
+    font-size: 18px;
+  }
+</style>

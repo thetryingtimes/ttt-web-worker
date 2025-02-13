@@ -36,6 +36,7 @@
       published: false,
       category_id: null,
       voting_enabled: false,
+      pinned: false,
 
       knowledge: '',
       user_message: '',
@@ -109,33 +110,8 @@
     ondragleave={handleDrag}
     ondrop={handleDrop}
   >
-    <h2 class="font-serif text-xl">Knowledge</h2>
-    <div class="flex flex-col gap-2">
-      {#each droppedFiles as file, index}
-        <AdminFileAttachment
-          {file}
-          {index}
-          ondelete={(index) => {
-            droppedFiles = droppedFiles.filter((_, i) => i !== index);
-          }}
-        />
-      {/each}
-    </div>
-    <div>
-      <AdminTextarea
-        label="Additional instructions"
-        bind:value={draft.user_message}
-      />
-    </div>
-    {#if draft.knowledge}
-      <div class="prose">
-        <pre
-          class="whitespace-pre-wrap"
-          bind:innerText={draft.knowledge}
-          contenteditable></pre>
-      </div>
-    {/if}
-    <div>
+    <div class="flex items-center justify-between">
+      <h2 class="font-serif text-xl">Knowledge</h2>
       <AdminButton
         label="Process"
         disabled={droppedFiles.length === 0 || knowledgeLoading}
@@ -162,6 +138,29 @@
         }}
       />
     </div>
+    <div class="flex flex-col gap-2">
+      {#each droppedFiles as file, index}
+        <AdminFileAttachment
+          {file}
+          {index}
+          ondelete={(index) => {
+            droppedFiles = droppedFiles.filter((_, i) => i !== index);
+          }}
+        />
+      {/each}
+    </div>
+    <div>
+      <AdminTextarea
+        label="Additional instructions"
+        bind:value={draft.user_message}
+      />
+    </div>
+    <div class="prose">
+      <pre
+        class="min-h-56 whitespace-pre-wrap"
+        bind:innerText={draft.knowledge}
+        contenteditable></pre>
+    </div>
   </section>
 
   <section
@@ -176,6 +175,7 @@
         label="Voting Enabled"
         bind:checked={draft.voting_enabled}
       />
+      <AdminCheckbox label="Pinned" bind:checked={draft.pinned} />
     </div>
     <div class="flex flex-wrap gap-4">
       <AdminCategorySelect bind:value={draft.category_id} />

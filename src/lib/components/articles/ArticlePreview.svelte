@@ -10,7 +10,10 @@
   import ArticleNav from './ArticleNav.svelte';
   import ArticleHeader from './ArticleHeader.svelte';
 
-  let { external_id }: { external_id: string } = $props();
+  let {
+    external_id,
+    pinned = false
+  }: { external_id: string; pinned?: boolean } = $props();
   let loading = $state(true);
   let error = $state(false);
   let cached_article: CachedArticle | undefined = $state();
@@ -57,9 +60,15 @@
       </div>
     </div>
   {:else if error}{:else if cached_article}
-    <article class="flex flex-col gap-4 px-4">
+    <article
+      class="flex flex-col gap-4 rounded-2xl px-4 {pinned ? `bg-ttt/2` : ``}"
+      class:border-2={pinned}
+      class:border-ttt={pinned}
+      class:py-4={pinned}
+      class:mx-4={pinned}
+    >
       <div>
-        <ArticleHeader bind:cached_article />
+        <ArticleHeader bind:cached_article {pinned} />
         <div class="group">
           <h2 class="mt-2">
             <a
@@ -68,7 +77,7 @@
               >{cached_article.article.content.title}</a
             >
           </h2>
-          <p class="mt-1">
+          <p class="mt-1 {pinned ? `hidden md:block` : ``}">
             <a
               href={`/${cached_article.article.external_id}`}
               class="text-pretty"
