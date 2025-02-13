@@ -85,23 +85,6 @@
       </button>
     {/if}
   {/if}
-  <button
-    class="font-cond group flex items-center gap-1 uppercase"
-    onclick={async () => {
-      await shareArticle(cached_article.article.external_id);
-    }}
-  >
-    <span class="material-symbols-outlined filled" aria-hidden="true"
-      >ios_share</span
-    >
-    <span
-      class="group-hover:underline md:inline-block"
-      class:hidden={cached_article.article.voting_enabled}>SHARE</span
-    >
-    <span class="text-gray-500"
-      >{millify(cached_article.votes.shares || 0)}</span
-    >
-  </button>
   {#if cached_article.external_urls?.reddit}
     <a
       href={cached_article.external_urls.reddit}
@@ -120,6 +103,23 @@
       >
     </a>
   {/if}
+  <button
+    class="font-cond group flex items-center gap-1 uppercase"
+    onclick={async () => {
+      await shareArticle(cached_article.article.external_id);
+    }}
+  >
+    <span class="material-symbols-outlined filled" aria-hidden="true"
+      >ios_share</span
+    >
+    <span
+      class="group-hover:underline md:inline-block"
+      class:hidden={cached_article.article.voting_enabled}>SHARE</span
+    >
+    <span class="text-gray-500"
+      >{millify(cached_article.votes.shares || 0)}</span
+    >
+  </button>
 </nav>
 
 <ArticleBallotCoordinator bind:this={ballotCoordinator} bind:cached_article />
