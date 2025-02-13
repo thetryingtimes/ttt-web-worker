@@ -35,16 +35,12 @@
     const els = document.querySelectorAll('.inventory-container');
     let ad_index = 0;
     let ads = inventory.sort(() => Math.random() - 0.5);
-    ads.unshift(...guaranteed);
+    ads = [...guaranteed, ...ads];
 
     els.forEach((el) => {
       if (!inventory[ad_index]) ad_index = 0;
       el.innerHTML = template(ads[ad_index]);
       ad_index++;
-      el.addEventListener('load_error', () => {
-        el.nextSibling.remove();
-        el.remove();
-      });
     });
   }
 
