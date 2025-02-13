@@ -35,7 +35,7 @@
     const els = document.querySelectorAll('.inventory-container');
     let ad_index = 0;
     let ads = inventory.sort(() => Math.random() - 0.5);
-    ads.unshift(guaranteed);
+    ads.unshift(...guaranteed);
 
     els.forEach((el) => {
       if (!inventory[ad_index]) ad_index = 0;
