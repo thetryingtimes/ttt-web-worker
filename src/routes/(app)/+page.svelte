@@ -48,7 +48,11 @@
         const params = page.url.searchParams;
         params.set('sort', newFilter);
 
-        await goto(`/?${params.toString()}`, { invalidateAll: true });
+        await goto(`/?${params.toString()}`, {
+          invalidateAll: true,
+          noScroll: true,
+          keepFocus: true
+        });
       }}
     />
     <BubbleSelect
@@ -66,7 +70,11 @@
         if (newCategory === 'all') params.delete('category');
         else params.set('category', newCategory);
 
-        await goto(`/?${params.toString()}`, { invalidateAll: true });
+        await goto(`/?${params.toString()}`, {
+          invalidateAll: true,
+          noScroll: true,
+          keepFocus: true
+        });
       }}
     />
   </div>
