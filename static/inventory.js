@@ -23,12 +23,12 @@
     },
     {
       target: 'https://www.tiktok.com/@mikeyjoe12345/video/7468371632579693870',
-      asset: `/social-proof-v1.jpg`
+      asset: `/social-proof-v2.jpg`
     }
   ];
 
   function template(inventory) {
-    return `<a href="${inventory.target}" target="_blank" style="display:block;text-align:center;max-width:420px;min-height:420px;margin:2rem auto;"><img src="${root}${inventory.asset}" alt="" style="width:100%;display:inline-block;"/></a>`;
+    return `<a href="${inventory.target}" target="_blank" style="display:block;text-align:center;max-width:420px;margin:2rem auto;"><img src="${root}${inventory.asset}" width="420" height="420" alt="" style="max-width:100%;height:auto;aspect-ratio:1/1;display:inline-block;"/></a>`;
   }
 
   function populate(e) {
