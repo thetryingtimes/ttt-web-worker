@@ -36,7 +36,10 @@ export class SupabaseClient {
     }
 
     if (filter === 'popular') {
-      query = query.order('popularity', { ascending: false });
+      query = query.order('popularity', {
+        ascending: false,
+        nullsFirst: false
+      });
     }
 
     if (category_id) {
