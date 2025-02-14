@@ -16,6 +16,11 @@
   animation-delay: 1000ms;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
 body {
   font-family: 'Roboto', serif;
   font-optical-sizing: auto;

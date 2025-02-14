@@ -28,7 +28,7 @@
   ];
 
   function template(inventory) {
-    return `<a href="${inventory.target}" target="_blank" style="display:block;text-align:center;max-width:420px;margin:2rem auto;"><img src="${root}${inventory.asset}" alt="" style="width:100%;display:inline-block;"/></a>`;
+    return `<a href="${inventory.target}" target="_blank" style="display:block;text-align:center;max-width:420px;min-height:420px;margin:2rem auto;"><img src="${root}${inventory.asset}" alt="" style="width:100%;display:inline-block;"/></a>`;
   }
 
   function populate(e) {
