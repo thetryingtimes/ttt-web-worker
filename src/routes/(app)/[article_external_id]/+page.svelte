@@ -19,6 +19,13 @@
     property="og:description"
     content={data.cached_article.article.content.blurb}
   />
+  {#if data.cached_article}
+    <link
+      rel="canonical"
+      href="https://thetryingtimes.com/{data.cached_article.article
+        .external_id}"
+    />
+  {/if}
 </svelte:head>
 
 <Impact />

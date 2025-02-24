@@ -24,6 +24,7 @@
   <title>Home | The Trying Times</title>
   <meta property="og:title" content="The Trying Times" />
   <meta property="og:description" content="Hold Congress Accountable." />
+  <link rel="canonical" href="https://thetryingtimes.com" />
 </svelte:head>
 
 <Impact />
