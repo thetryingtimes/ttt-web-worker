@@ -180,7 +180,11 @@
     <div class="flex flex-wrap gap-4">
       <AdminCategorySelect bind:value={draft.category_id} />
       <AdminDatetime label="Pulbished at" bind:value={draft.published_at} />
-      <AdminReadonly label="External ID" bind:value={draft.external_id} />
+      <AdminReadonly
+        label="External ID"
+        bind:value={draft.external_id}
+        href="https://thetryingtimes.com/{draft.external_id}"
+      />
     </div>
     {#each draft.content.sections as section, index}
       <AdminTextarea
