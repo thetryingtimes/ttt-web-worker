@@ -8,6 +8,7 @@
   import BubbleSelect from '$lib/components/global/BubbleSelect.svelte';
   import Impact from '$lib/components/global/Impact.svelte';
   import type { PageData } from './$types';
+  import { adsense_block } from './adsense_block';
 
   let { data }: { data: PageData } = $props();
 
@@ -83,23 +84,7 @@
     {#each external_ids as item, index (item.external_id)}
       <ArticlePreview external_id={item.external_id} />
       {#if index % 3 === 0 && index < external_ids.length - 1}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8548253373322481"
-          crossorigin="anonymous"
-        ></script>
-        <!-- Display -->
-        <ins
-          class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-8548253373322481"
-          data-ad-slot="7250411426"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        {@html adsense_block}
       {/if}
     {/each}
     {#if nextOffset}
